@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import { authStore } from '$lib/auth/authStore';
+	import GoogleAuthLink from '$lib/auth/GoogleAuthLink.svelte';
+	import QueueList from '$lib/QueueList.svelte';
+</script>
+
+<h1>QueueTube</h1>
+
+{#if !$authStore.isLoggedIn}
+	<GoogleAuthLink />
+{:else}
+	<QueueList />
+{/if}
