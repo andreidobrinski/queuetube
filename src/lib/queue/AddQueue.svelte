@@ -16,7 +16,7 @@
 				type="button"
 				on:click={() => {
 					queueStore.update((value) => {
-						return [...value, { name: newQueueName, channels: [] }];
+						return { ...value, [newQueueName]: { name: newQueueName, channels: [] } };
 					});
 					isAddingQueue = false;
 					newQueueName = '';
