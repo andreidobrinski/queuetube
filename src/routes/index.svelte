@@ -1,13 +1,26 @@
 <script lang="ts">
+	import App from '$lib/App.svelte';
 	import { authStore } from '$lib/auth/authStore';
 	import GoogleAuthLink from '$lib/auth/GoogleAuthLink.svelte';
-	import QueueList from '$lib/QueueList.svelte';
+	import { checkToken } from '$lib/auth/checkToken';
+	import { onMount } from 'svelte';
+
+	let isLoading = true;
+
+	onMount(async () => {
+		await checkToken();
+		isLoading = false;
+	});
 </script>
 
 <h1>QueueTube</h1>
 
-{#if !$authStore.isLoggedIn}
+<!-- <App /> -->
+
+{#if isLoading}
+	<p>Loading...</p>
+{:else if !$authStore.isLoggedIn}
 	<GoogleAuthLink />
 {:else}
-	<QueueList />
+	<App />
 {/if}
