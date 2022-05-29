@@ -1,24 +1,24 @@
 import { writable } from 'svelte/store';
 
+interface Queues {
+  [key: string]: Queue
+}
+
 interface Queue {
-  [key: string]: {
-    name: string;
-    channels?: Array<Channel>;
-    // channelCount: number;
-  }
+  name: string;
+  channels: {
+    [key: string]: Channel
+  };
 }
 
 interface Channel {
-  [key: string]: {
-    id?: string;
-  }
+  id: string;
+  name: string;
 }
-
-type QueueStore = Array<Queue>
 
 const stored = localStorage.getItem('queues');
 
-const initialValue: QueueStore = stored ? JSON.parse(stored) : {};
+const initialValue: Queues = stored ? JSON.parse(stored) : {};
 
 export const queueStore = writable(initialValue);
 
