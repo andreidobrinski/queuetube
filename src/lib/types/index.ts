@@ -1,3 +1,15 @@
+export interface ChannelThumbnails {
+  default: {
+    url: string;
+  };
+  high: {
+    url: string;
+  };
+  medium: {
+    url: string;
+  };
+}
+
 export interface SubscriptionItem {
   id: string;
   contentDetails: {
@@ -11,17 +23,7 @@ export interface SubscriptionItem {
     resourceId: {
       channelId: string;
     };
-    thumbnails: {
-      default: {
-        url: string;
-      };
-      high: {
-        url: string;
-      };
-      medium: {
-        url: string;
-      };
-    };
+    thumbnails: ChannelThumbnails;
   };
 }
 

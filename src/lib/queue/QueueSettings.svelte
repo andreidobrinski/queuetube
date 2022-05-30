@@ -1,8 +1,11 @@
 <script lang="ts">
+	import IconButton from '@smui/icon-button';
+	import Button from '@smui/button';
 	import type { SubscriptionResponse, SubscriptionItem } from '$lib/types';
 	import { authStore } from '$lib/auth/authStore';
 	import { queueStore } from '$lib/queueStore';
 	import { selectedQueue } from '$lib/selectedQueue';
+	import ChannelImage from '$lib/queue/ChannelImage.svelte';
 
 	let subscriptions: Array<SubscriptionItem> = [];
 
@@ -41,6 +44,7 @@
 						[channelId]: {
 							id: channelId,
 							name,
+							thumbnails: channel.snippet.thumbnails,
 						},
 					},
 				},
@@ -50,13 +54,30 @@
 	}
 </script>
 
+<p>Channels in Queue</p>
+{#each Object.values($queueStore[$selectedQueue].channels) as channel}
+	<div style="display: flex; align-items: center;">
+		<ChannelImage src={channel.thumbnails?.default.url || ''} name={channel.name} />
+		<p>{channel.name}</p>
+	</div>
+{/each}
 <Button on:click={getSubscribedChannels}>Add Channel</Button>
 {#if !!subscriptions.length}
 	<p>My Subscriptions</p>
 {/if}
 {#each subscriptions as subscription}
-	<div style="display: flex;">
-		<button type="button" on:click={() => addChannel(subscription)}>Add</button>
+	<div style="display: flex; align-items: center;">
+		<IconButton
+			on:click={() => addChannel(subscription)}
+			aria-label={`Add channel ${subscription.snippet.title} to queue ${$selectedQueue}`}
+			class="material-icons"
+		>
+			add
+		</IconButton>
+		<ChannelImage
+			src={subscription.snippet.thumbnails.default.url}
+			name={subscription.snippet.title}
+		/>
 		<p>{subscription.snippet.title}{subscription.contentDetails.newItemCount ? ' - *' : ''}</p>
 	</div>
 {/each}
