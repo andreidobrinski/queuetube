@@ -1,19 +1,30 @@
 <script lang="ts">
 	import { queueStore } from '$lib/queue/queueStore';
+	import Textfield from '@smui/textfield';
+	import Button from '@smui/button';
 
 	let isAddingQueue = false;
 	let newQueueName = '';
+
+	function focusNode(node: HTMLElement) {
+		node.focus();
+	}
 </script>
 
 <div style="display: flex; flex-direction: column; max-width: 400px;">
 	{#if isAddingQueue}
-		<input bind:value={newQueueName} />
+		<Textfield variant="outlined" bind:value={newQueueName} use={[focusNode]} />
 		<div style="display: flex; justify-content: space-between; margin-top: 10px;">
-			<button type="button" on:click={() => (isAddingQueue = false)} style="width: 40%;">
+			<Button
+				on:click={() => {
+					isAddingQueue = false;
+					newQueueName = '';
+				}}
+				style="width: 40%;"
+			>
 				Cancel
-			</button>
-			<button
-				type="button"
+			</Button>
+			<Button
 				on:click={() => {
 					queueStore.update((value) => {
 						return { ...value, [newQueueName]: { name: newQueueName, channels: {} } };
@@ -24,9 +35,9 @@
 				style="width: 40%;"
 			>
 				Add
-			</button>
+			</Button>
 		</div>
 	{:else}
-		<button type="button" on:click={() => (isAddingQueue = true)}>Add a Queue</button>
+		<Button on:click={() => (isAddingQueue = true)}>Add a Queue</Button>
 	{/if}
 </div>
