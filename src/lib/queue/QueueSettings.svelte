@@ -50,7 +50,10 @@
 	}
 </script>
 
-<button type="button" on:click={getSubscribedChannels}>Add Channel</button>
+<Button on:click={getSubscribedChannels}>Add Channel</Button>
+{#if !!subscriptions.length}
+	<p>My Subscriptions</p>
+{/if}
 {#each subscriptions as subscription}
 	<div style="display: flex;">
 		<button type="button" on:click={() => addChannel(subscription)}>Add</button>
