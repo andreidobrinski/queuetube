@@ -52,9 +52,17 @@
 		});
 		subscriptions = subscriptions.filter((subscription) => subscription.id !== channel.id);
 	}
+
+	$: channelNumber = Object.keys($queueStore[$selectedQueue].channels).length;
 </script>
 
-<p>Channels in Queue</p>
+{#if channelNumber === 0}
+	<p>No Channels in Queue</p>
+{:else if channelNumber === 1}
+	<p>1 Channel in Queue</p>
+{:else}
+	<p>{channelNumber} Channels in Queue</p>
+{/if}
 {#each Object.values($queueStore[$selectedQueue].channels) as channel}
 	<div style="display: flex; align-items: center;">
 		<ChannelImage src={channel.thumbnails?.default.url || ''} name={channel.name} />
