@@ -6,7 +6,11 @@
 	import QueueVideos from '$lib/queue/QueueVideos.svelte';
 	import QueueSettings from '$lib/queue/QueueSettings.svelte';
 
-	let active = 'Queue';
+	enum Tabs {
+		Queue = 'Queue',
+		Settings = 'Settings',
+	}
+	let active = Tabs.Queue;
 </script>
 
 <div style="display: flex; align-items: center;">
@@ -14,15 +18,15 @@
 	<h5>{$selectedQueue}</h5>
 </div>
 
-<TabBar tabs={['Queue', 'Settings']} let:tab bind:active style="margin-bottom: 1.67em;">
+<TabBar tabs={[Tabs.Queue, Tabs.Settings]} let:tab bind:active style="margin-bottom: 1.67em;">
 	<Tab {tab}>
 		<Label>{tab}</Label>
 	</Tab>
 </TabBar>
 
-{#if active === 'Queue'}
+{#if active === Tabs.Queue}
 	<QueueVideos />
 {/if}
-{#if active === 'Settings'}
+{#if active === Tabs.Settings}
 	<QueueSettings />
 {/if}
