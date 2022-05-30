@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Queue from './Queue.svelte';
-	import { selectedQueue } from './queue/selectedQueue';
-	import QueueList from './QueueList.svelte';
+	import Queue from '$lib/queue/Queue.svelte';
+	import { selectedQueue } from '$lib/selectedQueue';
+	import QueueList from '$lib/queueList/QueueList.svelte';
 </script>
 
 {#if $selectedQueue}

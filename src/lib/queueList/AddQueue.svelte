@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { queueStore } from '$lib/queue/queueStore';
+	import { queueStore } from '$lib/queueStore';
 	import Textfield from '@smui/textfield';
 	import Button from '@smui/button';
 

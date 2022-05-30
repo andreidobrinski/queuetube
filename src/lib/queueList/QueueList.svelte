@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Button from '@smui/button';
-	import { queueStore } from '$lib/queue/queueStore';
-	import AddQueue from './queue/AddQueue.svelte';
-	import { selectedQueue } from './queue/selectedQueue';
+	import { queueStore } from '$lib/queueStore';
+	import AddQueue from '$lib/queueList/AddQueue.svelte';
+	import { selectedQueue } from '$lib/selectedQueue';
 </script>
 
 <p>My Queue List</p>

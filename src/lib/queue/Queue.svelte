@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { SubscriptionResponse, SubscriptionItem } from '$lib/types';
-	import { selectedQueue } from '$lib/queue/selectedQueue';
+	import { selectedQueue } from '$lib/selectedQueue';
 	import { authStore } from '$lib/auth/authStore';
-	import { queueStore } from '$lib/queue/queueStore';
+	import { queueStore } from '$lib/queueStore';
 	import Tab, { Label } from '@smui/tab';
 	import TabBar from '@smui/tab-bar';
 
