@@ -14,7 +14,13 @@
 </script>
 
 <div style="display: flex; align-items: center;">
-	<IconButton on:click={() => selectedQueue.set('')} class="material-icons">arrow_back</IconButton>
+	<IconButton
+		on:click={() => selectedQueue.set('')}
+		class="material-icons"
+		aria-label="Back to QueueList"
+	>
+		arrow_back
+	</IconButton>
 	<h5>{$selectedQueue}</h5>
 </div>
 
