@@ -3,6 +3,10 @@
 	import { selectedQueue } from '$lib/queue/selectedQueue';
 	import { authStore } from '$lib/auth/authStore';
 	import { queueStore } from '$lib/queue/queueStore';
+	import Tab, { Label } from '@smui/tab';
+	import TabBar from '@smui/tab-bar';
+
+	let activeTab = 'Queue';
 
 	let subscriptions: Array<SubscriptionItem> = [];
 
@@ -76,6 +80,11 @@
 </script>
 
 <p>{$selectedQueue}</p>
+<TabBar tabs={['Queue', 'Settings']} let:tab bind:activeTab>
+	<Tab {tab}>
+		<Label>{tab}</Label>
+	</Tab>
+</TabBar>
 {#each Object.values($queueStore[$selectedQueue].channels) as channel}
 	<div style="display: flex;">
 		<p>{channel.name}</p>

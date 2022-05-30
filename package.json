@@ -15,12 +15,15 @@
     "prepare": "svelte-kit sync && npm run smui-theme-base && npm run smui-theme-light && npm run smui-theme-dark",
     "smui-theme-base": "smui-theme compile static/smui-base.css -i src/theme",
     "smui-theme-light": "smui-theme compile static/smui-light.css -i src/theme/light",
-    "smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark"
+    "smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark",
+    "restart": "npm run prepare && npm run dev"
   },
   "devDependencies": {
     "@material/typography": "^13.0.0",
     "@playwright/test": "^1.21.0",
     "@smui/button": "*",
+    "@smui/tab": "*",
+    "@smui/tab-bar": "*",
     "@smui/textfield": "*",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/adapter-static": "*",
