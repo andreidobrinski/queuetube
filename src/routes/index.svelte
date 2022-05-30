@@ -13,7 +13,7 @@
 	});
 </script>
 
-<h1>QueueTube</h1>
+<h1 style="margin-bottom: 0;">QueueTube</h1>
 
 <!-- <App /> -->
 

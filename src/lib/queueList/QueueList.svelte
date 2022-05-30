@@ -5,7 +5,7 @@
 	import { selectedQueue } from '$lib/selectedQueue';
 </script>
 
-<p>My Queue List</p>
+<h5>My Queue List</h5>
 <div style="display: flex; flex-direction: column; max-width: 400px; margin-bottom: 12px;">
 	{#each Object.values($queueStore) as queue}
 		<Button color="secondary" on:click={() => selectedQueue.set(`${queue.name}`)}>

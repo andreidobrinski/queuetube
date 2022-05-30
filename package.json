@@ -22,6 +22,8 @@
     "@material/typography": "^13.0.0",
     "@playwright/test": "^1.21.0",
     "@smui/button": "*",
+    "@smui/common": "*",
+    "@smui/icon-button": "*",
     "@smui/tab": "*",
     "@smui/tab-bar": "*",
     "@smui/textfield": "*",
