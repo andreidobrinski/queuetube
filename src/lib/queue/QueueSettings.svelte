@@ -61,8 +61,10 @@
 		<p>{channel.name}</p>
 	</div>
 {/each}
-<Button on:click={getSubscribedChannels}>Add Channel</Button>
-{#if !!subscriptions.length}
+{#if !subscriptions.length}
+	<Button on:click={getSubscribedChannels}>Add Channel</Button>
+{:else}
+	<Button on:click={() => (subscriptions = [])}>Done Adding</Button>
 	<p>My Subscriptions</p>
 {/if}
 {#each subscriptions as subscription}
