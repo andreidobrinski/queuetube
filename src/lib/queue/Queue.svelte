@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	import { selectedQueue } from '$lib/selectedQueue';
 	import Tab, { Label, Icon } from '@smui/tab';
 	import IconButton from '@smui/icon-button';
@@ -39,8 +40,12 @@
 </TabBar>
 
 {#if active === tabs[0]}
-	<QueueVideos />
+	<div in:fade>
+		<QueueVideos />
+	</div>
 {/if}
 {#if active === tabs[1]}
-	<QueueSettings />
+	<div in:fade>
+		<QueueSettings />
+	</div>
 {/if}
