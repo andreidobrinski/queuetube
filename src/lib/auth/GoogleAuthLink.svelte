@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Button from '@smui/button';
+
 	const baseUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
 	const params = [
 		'?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.readonly',
@@ -12,4 +14,4 @@
 	const authUrl = `${baseUrl}${params}`;
 </script>
 
-<a href={authUrl}>Log In</a>
+<Button href={authUrl}>Log In</Button>
