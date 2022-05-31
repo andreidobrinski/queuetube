@@ -7,4 +7,5 @@
 	{src}
 	alt={`image for channel ${name}`}
 	style="height: 40px; border-radius: 50%; margin-right: 8px;"
+	referrerpolicy="no-referrer"
 />
