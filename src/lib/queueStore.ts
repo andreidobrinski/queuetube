@@ -16,6 +16,11 @@ interface Channel {
   id: string;
   name: string;
   thumbnails?: ChannelThumbnails;
+  latestViewed?: {
+    videoId: string;
+    videoPublishedAt: string;
+    playlistItemId: string;
+  },
 }
 
 const stored = localStorage.getItem('queues');

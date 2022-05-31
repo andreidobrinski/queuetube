@@ -30,9 +30,36 @@
 		);
 	}
 
-	function addChannel(channel: SubscriptionItem) {
+	async function reqChannel(channelId: string) {
+		const baseUrl = 'https://www.googleapis.com/youtube/v3/channels';
+		const params = [
+			'?part=contentDetails%2Cid%2Csnippet%2CtopicDetails',
+			`&id=${channelId}`,
+			`&access_token=${$authStore.token}`,
+		].join('');
+		const url = `${baseUrl}${params}`;
+		const res = await fetch(url);
+		const data = await res.json();
+
+		const uploadPlaylistId = data.items[0].contentDetails.relatedPlaylists.uploads;
+		const basePlaylistUrl = 'https://www.googleapis.com/youtube/v3/playlistItems';
+		const playlistParams = [
+			'?part=contentDetails%2Cid%2Csnippet',
+			'&maxResults=50',
+			`&playlistId=${uploadPlaylistId}`,
+			`&access_token=${$authStore.token}`,
+		].join('');
+		const playlistUrl = `${basePlaylistUrl}${playlistParams}`;
+		const playlistRes = await fetch(playlistUrl);
+		const playlistData = await playlistRes.json();
+
+		return playlistData.items[0];
+	}
+
+	async function addChannel(channel: SubscriptionItem) {
 		const channelId = channel.snippet.resourceId.channelId;
 		const name = channel.snippet.title;
+		const lastestUpload = await reqChannel(channelId);
 		queueStore.update((queues) => {
 			const currentQueue = queues[$selectedQueue];
 			return {
@@ -45,6 +72,11 @@
 							id: channelId,
 							name,
 							thumbnails: channel.snippet.thumbnails,
+							latestViewed: {
+								videoId: lastestUpload.contentDetails.videoId,
+								videoPublishedAt: lastestUpload.contentDetails.videoPublishedAt,
+								playlistItemId: lastestUpload.id,
+							},
 						},
 					},
 				},
@@ -63,10 +95,19 @@
 {:else}
 	<p>{channelNumber} Channels in Queue</p>
 {/if}
-{#each Object.values($queueStore[$selectedQueue].channels) as channel}
+{#each Object.values($queueStore[$selectedQueue].channels) as channel (channel.id)}
 	<div style="display: flex; align-items: center;">
-		<ChannelImage src={channel.thumbnails?.default.url || ''} name={channel.name} />
+		<ChannelImage
+			src={channel.thumbnails?.default.url || channel.thumbnails?.medium.url || ''}
+			name={channel.name}
+		/>
 		<p>{channel.name}</p>
+		<IconButton
+			aria-label={`delete channel ${channel.name} from queue ${$selectedQueue}`}
+			class="material-icons"
+		>
+			delete
+		</IconButton>
 	</div>
 {/each}
 {#if !subscriptions.length}
@@ -75,17 +116,18 @@
 	<Button on:click={() => (subscriptions = [])}>Done Adding</Button>
 	<p>My Subscriptions</p>
 {/if}
-{#each subscriptions as subscription}
+{#each subscriptions as subscription (subscription.id)}
 	<div style="display: flex; align-items: center;">
 		<IconButton
 			on:click={() => addChannel(subscription)}
-			aria-label={`Add channel ${subscription.snippet.title} to queue ${$selectedQueue}`}
+			aria-label={`add channel ${subscription.snippet.title} to queue ${$selectedQueue}`}
 			class="material-icons"
 		>
 			add
 		</IconButton>
 		<ChannelImage
-			src={subscription.snippet.thumbnails.default.url}
+			src={subscription.snippet.thumbnails.default.url ||
+				subscription.snippet.thumbnails.medium.url}
 			name={subscription.snippet.title}
 		/>
 		<p>{subscription.snippet.title}{subscription.contentDetails.newItemCount ? ' - *' : ''}</p>
