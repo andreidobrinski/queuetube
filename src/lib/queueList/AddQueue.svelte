@@ -11,7 +11,7 @@
 	}
 </script>
 
-<div style="display: flex; flex-direction: column; max-width: 400px;">
+<div style="display: flex; flex-direction: column; align-items: flex-start;">
 	{#if isAddingQueue}
 		<Textfield variant="outlined" bind:value={newQueueName} use={[focusNode]} />
 		<div style="display: flex; justify-content: space-between; margin-top: 10px;">

@@ -6,7 +6,7 @@
 </script>
 
 <h5>My Queue List</h5>
-<div style="display: flex; flex-direction: column; max-width: 400px; margin-bottom: 12px;">
+<div style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 12px;">
 	{#each Object.values($queueStore) as queue}
 		<Button color="secondary" on:click={() => selectedQueue.set(`${queue.name}`)}>
 			{queue.name}
