@@ -10,6 +10,14 @@ interface Queue {
   channels: {
     [key: string]: Channel
   };
+  videos?: Array<{
+    id: string;
+    title: string;
+    thumbnails: ChannelThumbnails;
+    channelTitle: string;
+    publishedAt: string;
+    channelThumbails: ChannelThumbnails;
+  }>
 }
 
 interface Channel {
