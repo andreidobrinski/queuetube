@@ -123,12 +123,7 @@
 	<p>{channelNumber} Channels in Queue</p>
 {/if}
 {#each Object.values($queueStore[$selectedQueue].channels) as channel (channel.id)}
-	<div
-		style="display: flex; align-items: center;"
-		animate:flip
-		in:receive={{ key: channel.id }}
-		out:fade
-	>
+	<div style="display: flex; align-items: center;" animate:flip in:receive={{ key: channel.id }}>
 		<ChannelImage
 			src={channel.thumbnails?.default.url || channel.thumbnails?.medium.url || ''}
 			name={channel.name}
