@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
+	import { queueStore } from '$lib/queueStore';
 	import { selectedQueue } from '$lib/selectedQueue';
 	import Tab, { Label, Icon } from '@smui/tab';
 	import IconButton from '@smui/icon-button';
@@ -18,7 +19,9 @@
 		},
 	];
 
-	let active = tabs[0];
+	const hasChannelsInQueue = Object.keys($queueStore[$selectedQueue].channels).length;
+
+	let active = hasChannelsInQueue ? tabs[0] : tabs[1];
 </script>
 
 <div style="display: flex; align-items: center;">
