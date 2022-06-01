@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fade, crossfade } from 'svelte/transition';
+	import { crossfade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import IconButton from '@smui/icon-button';
 	import Button from '@smui/button';
@@ -25,7 +25,6 @@
 		const url = `${baseUrl}${params}`;
 		const res = await fetch(url);
 		const data: SubscriptionResponse = await res.json();
-		console.log('data', data);
 		subscriptions = data.items.filter(
 			(subscription) =>
 				!Object.keys($queueStore[$selectedQueue].channels).includes(
