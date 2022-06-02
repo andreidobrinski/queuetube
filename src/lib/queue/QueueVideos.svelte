@@ -1,12 +1,13 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import IconButton from '@smui/icon-button';
+	import Button, { Icon } from '@smui/button';
 	import { selectedQueue } from '$lib/selectedQueue';
-	import { authStore } from '$lib/auth/authStore';
 	import { queueStore } from '$lib/queueStore';
 	import { getChannelsByIds, getVideosByIds, getPlaylistItemsById } from '$lib/api';
 
 	const channels = $queueStore[$selectedQueue].channels || {};
 	const channelIds = Object.keys(channels).join(',');
-	const queueVideos = $queueStore[$selectedQueue].videos || [];
 
 	async function getNewVideos() {
 		const channelData = await getChannelsByIds(channelIds);
@@ -69,10 +70,29 @@
 		return videos;
 	}
 
-	getNewVideos();
+	function deleteVideo(id: string) {
+		queueStore.update((queues) => {
+			const currentQueue = queues[$selectedQueue];
+			return {
+				...queues,
+				[$selectedQueue]: {
+					...currentQueue,
+					videos: currentQueue.videos.filter((video) => video.id !== id),
+				},
+			};
+		});
+	}
+
+	onMount(() => {
+		getNewVideos();
+	});
 </script>
 
-{#each queueVideos as video}
+<Button style="margin-bottom: 1.67em; width: 100%;">
+	<Icon class="material-icons">play_arrow</Icon>
+	Play All
+</Button>
+{#each $queueStore[$selectedQueue].videos as video}
 	<div style="display: flex; align-items: center; margin-bottom: 16px;">
 		<img
 			src={video.thumbnails.medium.url}
@@ -82,7 +102,15 @@
 		/>
 		<div style="display: flex; flex-direction: column;">
 			<p style="margin-bottom: 0px;">{video.title}</p>
-			<p style="margin-top: 0px;">{video.channelTitle}</p>
+			<p style="margin-top: 0px; color: dimgray;">{video.channelTitle}</p>
 		</div>
+		<IconButton
+			aria-label={`remove video titled ${video.title} from queue ${$selectedQueue}`}
+			class="material-icons"
+			style="margin-left: auto; color: green;"
+			on:click={() => deleteVideo(video.id)}
+		>
+			check
+		</IconButton>
 	</div>
 {/each}
