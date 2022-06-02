@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { authStore } from '$lib/auth/authStore';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 
 	interface GoogleAuthResponse {
 		access_token: string;
@@ -28,6 +29,6 @@
 			token,
 			isLoggedIn: true,
 		});
-		goto('/');
+		goto(`${base}/`);
 	}
 </script>

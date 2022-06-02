@@ -1,10 +1,12 @@
 {
   "name": "queuetube",
   "version": "0.0.1",
+  "homepage": "https://andreidobrinski.com/queuetube",
   "scripts": {
     "dev": "svelte-kit dev",
     "host": "svelte-kit dev --host",
-    "build": "svelte-kit build",
+    "build": "rm -rf build && svelte-kit build && touch .svelte-kit/static/build/.nojekyll",
+    "deploy": "npm run build && npx gh-pages -d .svelte-kit/static/build -t true",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
     "test": "playwright test",
@@ -35,6 +37,7 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^3.2.1",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.5.0",
     "smui-theme": "*",
