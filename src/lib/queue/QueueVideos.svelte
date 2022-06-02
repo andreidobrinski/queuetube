@@ -4,7 +4,7 @@
 	import Button, { Icon } from '@smui/button';
 	import { selectedQueue } from '$lib/selectedQueue';
 	import { queueStore } from '$lib/queueStore';
-	import { getChannelsByIds, getVideosByIds, getPlaylistItemsById } from '$lib/api';
+	import { getChannelsByIds, getVideosByIds, getPlaylistItemsById, getQueueUrl } from '$lib/api';
 
 	const channels = $queueStore[$selectedQueue].channels || {};
 	const channelIds = Object.keys(channels).join(',');
@@ -86,9 +86,11 @@
 	onMount(() => {
 		getNewVideos();
 	});
+
+	$: queueUrl = getQueueUrl();
 </script>
 
-<Button style="margin-bottom: 1.67em; width: 100%;">
+<Button href={queueUrl} style="margin-bottom: 1.67em; width: 100%;">
 	<Icon class="material-icons">play_arrow</Icon>
 	Play All
 </Button>
