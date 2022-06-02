@@ -28,7 +28,6 @@ interface Channel {
   latestViewed?: {
     videoId: string;
     videoPublishedAt: string;
-    playlistItemId: string;
   },
 }
 
