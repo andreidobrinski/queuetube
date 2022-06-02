@@ -29,7 +29,7 @@
 				<Button
 					on:click={() => {
 						queueStore.update((value) => {
-							return { ...value, [newQueueName]: { name: newQueueName, channels: {} } };
+							return { ...value, [newQueueName]: { name: newQueueName, channels: {}, videos: [] } };
 						});
 						isAddingQueue = false;
 						newQueueName = '';

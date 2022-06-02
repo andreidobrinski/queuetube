@@ -13,6 +13,7 @@ interface Video {
     title: string;
     publishedAt: string;
     channelTitle: string;
+    channelId: string;
     thumbnails: {
       default: Thumbnail;
       medium: Thumbnail;
