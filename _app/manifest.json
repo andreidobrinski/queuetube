@@ -1,0 +1,77 @@
+{
+  ".svelte-kit/runtime/client/start.js": {
+    "file": "start-90a8d54f.js",
+    "src": ".svelte-kit/runtime/client/start.js",
+    "isEntry": true,
+    "imports": [
+      "_index-f8268b08.js",
+      "_index-39dab4a5.js",
+      "_singletons-1b661bce.js"
+    ],
+    "dynamicImports": [
+      ".svelte-kit/runtime/components/layout.svelte",
+      ".svelte-kit/runtime/components/error.svelte",
+      "src/routes/auth.svelte",
+      "src/routes/index.svelte"
+    ]
+  },
+  ".svelte-kit/runtime/components/layout.svelte": {
+    "file": "layout.svelte-0775edc0.js",
+    "src": ".svelte-kit/runtime/components/layout.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f8268b08.js"
+    ]
+  },
+  ".svelte-kit/runtime/components/error.svelte": {
+    "file": "error.svelte-e492657e.js",
+    "src": ".svelte-kit/runtime/components/error.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f8268b08.js"
+    ]
+  },
+  "src/routes/auth.svelte": {
+    "file": "pages/auth.svelte-8809a764.js",
+    "src": "src/routes/auth.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f8268b08.js",
+      "_authStore-87f19da0.js",
+      "_singletons-1b661bce.js",
+      "_index-39dab4a5.js"
+    ]
+  },
+  "src/routes/index.svelte": {
+    "file": "pages/index.svelte-c5a183e7.js",
+    "src": "src/routes/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f8268b08.js",
+      "_index-39dab4a5.js",
+      "_authStore-87f19da0.js"
+    ]
+  },
+  "_index-f8268b08.js": {
+    "file": "chunks/index-f8268b08.js"
+  },
+  "_index-39dab4a5.js": {
+    "file": "chunks/index-39dab4a5.js",
+    "imports": [
+      "_index-f8268b08.js"
+    ]
+  },
+  "_singletons-1b661bce.js": {
+    "file": "chunks/singletons-1b661bce.js"
+  },
+  "_authStore-87f19da0.js": {
+    "file": "chunks/authStore-87f19da0.js",
+    "imports": [
+      "_index-39dab4a5.js"
+    ]
+  }
+}
