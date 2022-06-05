@@ -6,6 +6,7 @@
 	import { onMount } from 'svelte';
 
 	let isLoading = true;
+	$: isLoggedIn = $authStore.isLoggedIn;
 
 	onMount(async () => {
 		await checkToken();
@@ -13,14 +14,20 @@
 	});
 </script>
 
-<h1 style="margin-bottom: 0;">QueueTube</h1>
-
-<!-- <App /> -->
+<h1 class={`mdc-typography--headline${isLoggedIn ? '4' : '2'}`}>
+	<span>QueueTube</span>
+</h1>
 
 {#if isLoading}
 	<p>Loading...</p>
-{:else if !$authStore.isLoggedIn}
+{:else if !isLoggedIn}
 	<GoogleAuthLink />
 {:else}
 	<App />
 {/if}
+
+<style>
+	h1 {
+		margin-bottom: 0;
+	}
+</style>
