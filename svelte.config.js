@@ -10,8 +10,13 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
+		prerender: {
+			default: true
+		},
 		adapter: adapter({
-			fallback: '404.html'
+			pages: 'build',
+			assets: 'build',
+			fallback: null
 		}),
 		paths: {
 			base: isDevEnv ? '' : '/queuetube',
