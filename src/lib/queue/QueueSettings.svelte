@@ -2,7 +2,7 @@
 	import { crossfade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import IconButton from '@smui/icon-button';
-	import Button from '@smui/button';
+	import Button, { Icon } from '@smui/button';
 	import type { SubscriptionResponse, SubscriptionItem } from '$lib/types';
 	import { authStore } from '$lib/auth/authStore';
 	import { queueStore } from '$lib/queueStore';
@@ -138,7 +138,10 @@
 	</div>
 {/each}
 {#if !subscriptions.length}
-	<Button on:click={getSubscribedChannels}>Add Channel</Button>
+	<Button on:click={getSubscribedChannels}>
+		<Icon class="material-icons">add</Icon>
+		Add Channel
+	</Button>
 {:else}
 	<Button on:click={() => (subscriptions = [])}>Done Adding</Button>
 	<p>My Subscriptions</p>
