@@ -8,6 +8,7 @@
 	import { queueStore } from '$lib/queueStore';
 	import { selectedQueue } from '$lib/selectedQueue';
 	import ChannelImage from '$lib/queue/ChannelImage.svelte';
+	import QueueAdditionalSettings from './QueueAdditionalSettings.svelte';
 
 	const [send, receive] = crossfade({});
 
@@ -102,25 +103,20 @@
 		});
 	}
 
-	function deleteQueue() {
-		const queueId = $selectedQueue;
-		selectedQueue.set('');
-		queueStore.update((queues) => {
-			const { [queueId]: queue, ...rest } = queues;
-			return rest;
-		});
-	}
-
 	$: channelNumber = Object.keys($queueStore[$selectedQueue].channels).length;
 </script>
 
-{#if channelNumber === 0}
-	<p>No Channels in Queue</p>
-{:else if channelNumber === 1}
-	<p>1 Channel in Queue</p>
-{:else}
-	<p>{channelNumber} Channels in Queue</p>
-{/if}
+<div style="display: flex; justify-content: space-between;">
+	{#if channelNumber === 0}
+		<p>No Channels in Queue</p>
+	{:else if channelNumber === 1}
+		<p>1 Channel in Queue</p>
+	{:else}
+		<p>{channelNumber} Channels in Queue</p>
+	{/if}
+	<QueueAdditionalSettings />
+</div>
+
 {#each Object.values($queueStore[$selectedQueue].channels) as channel (channel.id)}
 	<div style="display: flex; align-items: center;" animate:flip in:receive={{ key: channel.id }}>
 		<ChannelImage
@@ -168,5 +164,3 @@
 		<p>{subscription.snippet.title}{subscription.contentDetails.newItemCount ? ' - *' : ''}</p>
 	</div>
 {/each}
-
-<Button on:click={deleteQueue}>Delete Queue</Button>

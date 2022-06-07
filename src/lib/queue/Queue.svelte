@@ -6,7 +6,7 @@
 	import IconButton from '@smui/icon-button';
 	import TabBar from '@smui/tab-bar';
 	import QueueVideos from '$lib/queue/QueueVideos.svelte';
-	import QueueSettings from '$lib/queue/QueueSettings.svelte';
+	import QueueSettings from '$lib/queue/settings/QueueSettings.svelte';
 
 	let tabs = [
 		{
