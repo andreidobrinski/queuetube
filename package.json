@@ -43,7 +43,7 @@
     "gh-pages": "^4.0.0",
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.5.0",
-    "smui-theme": "*",
+    "smui-theme": "6.0.0-beta.16",
     "svelte": "^3.44.0",
     "svelte-check": "^2.2.6",
     "svelte-preprocess": "^4.10.6",
