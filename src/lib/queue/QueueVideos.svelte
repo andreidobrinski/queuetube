@@ -7,10 +7,12 @@
 	import { queueStore } from '$lib/queueStore';
 	import { getChannelsByIds, getVideosByIds, getPlaylistItemsById, getQueueUrl } from '$lib/api';
 
-	const channels = $queueStore[$selectedQueue].channels || {};
-	const channelIds = Object.keys(channels).join(',');
+	$: channels = $queueStore[$selectedQueue].channels || {};
+	$: channelIds = Object.keys(channels).join(',');
 
 	async function getNewVideos() {
+		if (!channelIds) return;
+
 		const channelData = await getChannelsByIds(channelIds);
 
 		const channels = channelData.items.map((channel) => ({
