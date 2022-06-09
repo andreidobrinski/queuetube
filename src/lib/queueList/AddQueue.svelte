@@ -2,7 +2,7 @@
 	import { fade } from 'svelte/transition';
 	import { queueStore } from '$lib/queueStore';
 	import Textfield from '@smui/textfield';
-	import Button from '@smui/button';
+	import Button, { Icon } from '@smui/button';
 
 	let isAddingQueue = false;
 	let newQueueName = '';
@@ -42,7 +42,10 @@
 		</div>
 	{:else}
 		<div in:fade>
-			<Button on:click={() => (isAddingQueue = true)}>Add a Queue</Button>
+			<Button on:click={() => (isAddingQueue = true)}>
+				<Icon class="material-icons">add</Icon>
+				Add a Queue
+			</Button>
 		</div>
 	{/if}
 </div>
