@@ -104,16 +104,21 @@
 	}
 
 	$: channelNumber = Object.keys($queueStore[$selectedQueue].channels).length;
+
+	$: channelText = () => {
+		switch (channelNumber) {
+			case 0:
+				return 'No Channels in Queue';
+			case 1:
+				return '1 Channel in Queue';
+			default:
+				return `${channelNumber} Channels in Queue`;
+		}
+	};
 </script>
 
 <div style="display: flex; justify-content: space-between;">
-	{#if channelNumber === 0}
-		<p>No Channels in Queue</p>
-	{:else if channelNumber === 1}
-		<p>1 Channel in Queue</p>
-	{:else}
-		<p>{channelNumber} Channels in Queue</p>
-	{/if}
+	<p>{channelText()}</p>
 	<QueueAdditionalSettings />
 </div>
 
