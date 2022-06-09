@@ -166,6 +166,6 @@
 				subscription.snippet.thumbnails.medium.url}
 			name={subscription.snippet.title}
 		/>
-		<p>{subscription.snippet.title}{subscription.contentDetails.newItemCount ? ' - *' : ''}</p>
+		<p>{subscription.snippet.title}</p>
 	</div>
 {/each}
