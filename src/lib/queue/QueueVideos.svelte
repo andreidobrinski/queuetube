@@ -122,7 +122,7 @@
 		<img
 			src={video.thumbnails.medium.url}
 			alt={`image for video ${video.title}`}
-			style="border-radius: 8px; margin-right: 8px; aspect-ratio: 16 / 9; height: 80px;"
+			style="border-radius: 8px; margin-right: 8px; aspect-ratio: 16 / 9; height: 60px;"
 			referrerpolicy="no-referrer"
 		/>
 		<div style="display: flex; flex-direction: column;">
