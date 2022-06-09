@@ -3,7 +3,8 @@
 	import { flip } from 'svelte/animate';
 	import IconButton from '@smui/icon-button';
 	import Button, { Icon } from '@smui/button';
-	import type { SubscriptionResponse, SubscriptionItem } from '$lib/types';
+	import type { SubscriptionItem } from '$lib/api/types';
+	import { getSubscribedChannels } from '$lib/api';
 	import { authStore } from '$lib/auth/authStore';
 	import { queueStore } from '$lib/queueStore';
 	import { selectedQueue } from '$lib/selectedQueue';
@@ -14,18 +15,8 @@
 
 	let subscriptions: Array<SubscriptionItem> = [];
 
-	async function getSubscribedChannels() {
-		const baseUrl = 'https://www.googleapis.com/youtube/v3/subscriptions';
-		const params = [
-			'?part=snippet%2CcontentDetails%2Cid',
-			'&maxResults=50',
-			'&mine=true',
-			`&access_token=${$authStore.token}`,
-		].join('');
-
-		const url = `${baseUrl}${params}`;
-		const res = await fetch(url);
-		const data: SubscriptionResponse = await res.json();
+	async function getSubscriptions() {
+		const data = await getSubscribedChannels();
 		subscriptions = data.items.filter(
 			(subscription) =>
 				!Object.keys($queueStore[$selectedQueue].channels).includes(
@@ -139,7 +130,7 @@
 	</div>
 {/each}
 {#if !subscriptions.length}
-	<Button on:click={getSubscribedChannels}>
+	<Button on:click={getSubscriptions}>
 		<Icon class="material-icons">add</Icon>
 		Add Channel
 	</Button>

@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { ChannelThumbnails } from '$lib/types/index';
+import type { ChannelThumbnails } from '$lib/api/getSubscribedChannels';
 
 interface Queues {
   [key: string]: Queue
