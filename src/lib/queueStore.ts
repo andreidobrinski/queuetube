@@ -17,6 +17,7 @@ interface Queue {
     channelId: string;
     channelTitle: string;
     publishedAt: string;
+    duration: string;
     // channelThumbails: ChannelThumbnails;
   }>
 }

@@ -21,6 +21,9 @@ interface Video {
       standard: Thumbnail;
       maxres: Thumbnail;
     }
+  },
+  contentDetails: {
+    duration: string;
   }
 }
 
