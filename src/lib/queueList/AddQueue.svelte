@@ -2,6 +2,7 @@
 	import { fade } from 'svelte/transition';
 	import { queueStore } from '$lib/queueStore';
 	import Textfield from '@smui/textfield';
+	import HelperText from '@smui/textfield/helper-text';
 	import Button, { Icon } from '@smui/button';
 
 	let isAddingQueue = false;
@@ -10,12 +11,18 @@
 	function focusNode(node: HTMLElement) {
 		node.focus();
 	}
+
+	$: isAddButtonDisabled = Object.keys($queueStore).includes(newQueueName);
 </script>
 
 <div style="display: flex; flex-direction: column; align-items: flex-start;">
 	{#if isAddingQueue}
 		<div in:fade>
-			<Textfield variant="outlined" bind:value={newQueueName} use={[focusNode]} />
+			<Textfield variant="outlined" bind:value={newQueueName} use={[focusNode]}>
+				<HelperText slot="helper" persistent invalid>
+					{isAddButtonDisabled ? 'Queue name already exists' : ''}
+				</HelperText>
+			</Textfield>
 			<div style="display: flex; justify-content: space-between; margin-top: 10px;">
 				<Button
 					on:click={() => {
@@ -27,6 +34,7 @@
 					Cancel
 				</Button>
 				<Button
+					disabled={isAddButtonDisabled}
 					on:click={() => {
 						queueStore.update((value) => {
 							return { ...value, [newQueueName]: { name: newQueueName, channels: {}, videos: [] } };
