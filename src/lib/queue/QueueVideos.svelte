@@ -129,7 +129,7 @@
 
 <Button href={queueUrl} style="margin-bottom: 1.67em; width: 100%;">
 	<Icon class="material-icons">play_arrow</Icon>
-	Play All
+	<Label>Play All ({$queueStore[$selectedQueue].videos.length})</Label>
 </Button>
 {#each $queueStore[$selectedQueue].videos as video}
 	<div style="display: flex; align-items: center; margin-bottom: 16px;">
