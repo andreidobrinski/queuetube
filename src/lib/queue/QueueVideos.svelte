@@ -176,6 +176,7 @@
 		line-height: 0.9;
 		padding: 3px 2px;
 		background-color: rgba(0, 0, 0, 0.8);
+		color: white;
 		border-radius: 4px;
 	}
 </style>
