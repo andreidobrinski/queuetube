@@ -6,7 +6,7 @@
 	import type { SubscriptionItem } from '$lib/api/types';
 	import { queueStore } from '$lib/queueStore';
 	import { selectedQueue } from '$lib/selectedQueue';
-	import { getSubscribedChannels, getLatestUploadFromChannel } from '$lib/api';
+	import { getSubscribedChannels, getSecondLatestUploadFromChannel } from '$lib/api';
 
 	export let crossfadeTransition;
 	const [send, receive] = crossfadeTransition;
@@ -26,7 +26,7 @@
 	async function addChannel(channel: SubscriptionItem) {
 		const channelId = channel.snippet.resourceId.channelId;
 		const name = channel.snippet.title;
-		const lastestUpload = await getLatestUploadFromChannel(channelId);
+		const secondLastestUpload = await getSecondLatestUploadFromChannel(channelId);
 		queueStore.update((queues) => {
 			const currentQueue = queues[$selectedQueue];
 			return {
@@ -40,9 +40,9 @@
 							name,
 							thumbnails: channel.snippet.thumbnails,
 							latestViewed: {
-								videoId: lastestUpload.contentDetails.videoId,
-								videoPublishedAt: lastestUpload.contentDetails.videoPublishedAt,
-								playlistItemId: lastestUpload.id,
+								videoId: secondLastestUpload.contentDetails.videoId,
+								videoPublishedAt: secondLastestUpload.contentDetails.videoPublishedAt,
+								playlistItemId: secondLastestUpload.id,
 							},
 						},
 					},

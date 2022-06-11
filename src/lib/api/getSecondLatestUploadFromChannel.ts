@@ -23,7 +23,7 @@ interface PlaylistResponse {
   items: Array<PlaylistItem>;
 }
 
-export async function getLatestUploadFromChannel(channelId: string): Promise<PlaylistItem> {
+export async function getSecondLatestUploadFromChannel(channelId: string): Promise<PlaylistItem> {
   const { token } = get(authStore);
 
   const baseChannelUrl = 'https://www.googleapis.com/youtube/v3/channels';
@@ -48,5 +48,5 @@ export async function getLatestUploadFromChannel(channelId: string): Promise<Pla
   const playlistRes = await fetch(playlistUrl);
   const playlistData: PlaylistResponse = await playlistRes.json();
 
-  return playlistData.items[0];
+  return playlistData.items[1];
 }

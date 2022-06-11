@@ -3,7 +3,7 @@ import { getVideosByIds } from './getVideosByIds';
 import { getPlaylistItemsById } from './getPlaylistItemsById';
 import { getQueueUrl } from './getQueueUrl';
 import { getSubscribedChannels } from './getSubscribedChannels';
-import { getLatestUploadFromChannel } from './getLatestUploadFromChannel';
+import { getSecondLatestUploadFromChannel } from './getSecondLatestUploadFromChannel';
 
 export {
   getChannelsByIds,
@@ -11,5 +11,5 @@ export {
   getPlaylistItemsById,
   getQueueUrl,
   getSubscribedChannels,
-  getLatestUploadFromChannel,
+  getSecondLatestUploadFromChannel,
 }
