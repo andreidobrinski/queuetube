@@ -39,7 +39,11 @@ interface SubscriptionResponse {
   };
 }
 
-export async function getSubscribedChannels(): Promise<SubscriptionResponse> {
+interface Params {
+  pageToken: string | null;
+}
+
+export async function getSubscribedChannels({ pageToken }: Params): Promise<SubscriptionResponse> {
   const { token } = get(authStore);
 
   const baseUrl = 'https://www.googleapis.com/youtube/v3/subscriptions';
@@ -48,6 +52,7 @@ export async function getSubscribedChannels(): Promise<SubscriptionResponse> {
     '&maxResults=50',
     '&mine=true',
     `&access_token=${token}`,
+    `${pageToken ? `&pageToken=${pageToken}` : ''}`
   ].join('');
   const url = `${baseUrl}${params}`;
 

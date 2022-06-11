@@ -12,15 +12,18 @@
 	const [send, receive] = crossfadeTransition;
 
 	let subscriptions: Array<SubscriptionItem> = [];
+	let nextPageToken: string | null = null;
 
 	async function getSubscriptions() {
-		const data = await getSubscribedChannels();
-		subscriptions = data.items.filter(
+		const data = await getSubscribedChannels({ pageToken: nextPageToken });
+		const filteredByExisting = data.items.filter(
 			(subscription) =>
 				!Object.keys($queueStore[$selectedQueue].channels).includes(
 					subscription.snippet.resourceId.channelId
 				)
 		);
+		nextPageToken = data.nextPageToken;
+		subscriptions = [...subscriptions, ...filteredByExisting];
 	}
 
 	async function addChannel(channel: SubscriptionItem) {
@@ -84,3 +87,6 @@
 		<p>{subscription.snippet.title}</p>
 	</div>
 {/each}
+{#if !!nextPageToken}
+	<Button on:click={getSubscriptions}>Load More</Button>
+{/if}
