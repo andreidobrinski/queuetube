@@ -14,7 +14,8 @@ h1 {
 }
 
 h2 {
-  @include typography.typography('headline2');
+  // @include typography.typography('headline2');
+  @include typography.typography('headline4');
 }
 
 h3 {
