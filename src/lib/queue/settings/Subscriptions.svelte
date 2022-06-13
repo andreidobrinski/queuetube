@@ -87,6 +87,6 @@
 		<p>{subscription.snippet.title}</p>
 	</div>
 {/each}
-{#if !!nextPageToken}
+{#if !!nextPageToken && !!subscriptions.length}
 	<Button on:click={getSubscriptions}>Load More</Button>
 {/if}

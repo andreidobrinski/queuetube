@@ -25,7 +25,9 @@
 		});
 	}
 
-	$: channelNumber = Object.keys($queueStore[$selectedQueue].channels).length;
+	$: channels = $queueStore[$selectedQueue].channels ?? {};
+
+	$: channelNumber = Object.keys(channels).length;
 
 	$: channelText = () => {
 		switch (channelNumber) {
@@ -44,7 +46,7 @@
 	<QueueAdditionalSettings />
 </div>
 
-{#each Object.values($queueStore[$selectedQueue].channels) as channel (channel.id)}
+{#each Object.values(channels) as channel (channel.id)}
 	<div style="display: flex; align-items: center;" animate:flip in:receive={{ key: channel.id }}>
 		<ChannelImage
 			src={channel.thumbnails?.default.url || channel.thumbnails?.medium.url || ''}
