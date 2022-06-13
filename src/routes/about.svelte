@@ -42,7 +42,8 @@
 <h2>What about my data? How is it stored and used?</h2>
 <p>
 	QueueTube uses your Google Auth token to communicate with the YouTube API on your behalf to get
-	data such as your subscriptions and a given channel's videos.
+	data such as your subscriptions and a given channel's videos. Anonymized Google Analytics is used
+	to get a sense of the number of users.
 </p>
 <p>
 	All data related to your queues/videos/channels is stored in <a
