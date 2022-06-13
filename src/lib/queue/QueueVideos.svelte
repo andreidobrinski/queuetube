@@ -110,11 +110,12 @@
 		});
 	}
 
-	onMount(() => {
-		getNewVideos();
-	});
+	let queueUrl = '';
 
-	$: queueUrl = getQueueUrl();
+	onMount(async () => {
+		await getNewVideos();
+		queueUrl = await getQueueUrl();
+	});
 
 	function formatDuration(duration: string) {
 		const durationObject = dayjs.duration(duration);
