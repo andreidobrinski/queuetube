@@ -1,38 +1,18 @@
-# create-svelte
+# QueueTube
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+An app to create YouTube playlists by linking your subscriptions to a queue. As videos are released, they are automatically added to the queues you've created.
 
-## Creating a project
+[Demo](https://andreidobrinski.com/queuetube)
 
-If you're seeing this, you've probably already done this step. Congrats!
+This app is currently in beta. Please reach out to [@andreidobrinski](https://twitter.com/andreidobrinski) if you'd like to try it before release.
 
-```bash
-# create a new project in the current directory
-npm init svelte
+## Technologies Used
 
-# create a new project in my-app
-npm init svelte my-app
-```
+- [SvelteKit](https://kit.svelte.dev/)
+- [YouTube API](https://developers.google.com/youtube/v3)
+- [Svelte Material UI](https://sveltematerialui.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Day.js](https://day.js.org/)
+- [GitHub Pages](https://pages.github.com/)
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+![logo](./static/android-chrome-256x256.png)
