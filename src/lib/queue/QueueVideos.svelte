@@ -111,10 +111,13 @@
 	}
 
 	let queueUrl = '';
+	$: $queueStore, setQueueUrl();
+	function setQueueUrl() {
+		queueUrl = getQueueUrl();
+	}
 
 	onMount(async () => {
 		await getNewVideos();
-		queueUrl = await getQueueUrl();
 	});
 
 	function formatDuration(duration: string) {
