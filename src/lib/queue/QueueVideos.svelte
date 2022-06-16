@@ -10,7 +10,7 @@
 
 	dayjs.extend(duration);
 
-	$: channels = $queueStore[$selectedQueue].channels || {};
+	$: channels = $queueStore[$selectedQueue]?.channels || {};
 	$: channelIds = Object.keys(channels).join(',');
 
 	async function getNewVideos() {

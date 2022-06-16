@@ -11,7 +11,7 @@
 	const crossfadeTransition = crossfade({});
 	const [_, receive] = crossfadeTransition;
 
-	$: channels = $queueStore[$selectedQueue].channels ?? {};
+	$: channels = $queueStore[$selectedQueue]?.channels ?? {};
 
 	$: channelNumber = Object.keys(channels).length;
 
