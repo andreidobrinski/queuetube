@@ -4,6 +4,8 @@
 	import GoogleAuthLink from '$lib/auth/GoogleAuthLink.svelte';
 	import { checkToken } from '$lib/auth/checkToken';
 	import { onMount } from 'svelte';
+	import Button from '@smui/button';
+	import { base } from '$app/paths';
 
 	let isLoading = true;
 	$: isLoggedIn = $authStore.isLoggedIn;
@@ -22,6 +24,7 @@
 	<p>Loading...</p>
 {:else if !isLoggedIn}
 	<GoogleAuthLink />
+	<Button href={`${base}/about`} style="width: 100%; margin-top: 1.67em;">About</Button>
 {:else}
 	<App />
 {/if}
