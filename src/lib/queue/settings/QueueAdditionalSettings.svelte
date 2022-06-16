@@ -8,7 +8,7 @@
 	import List, { Item, Separator, Text } from '@smui/list';
 	import Dialog, { Title, Content, Actions } from '@smui/dialog';
 	import Button, { Label as ButtonLabel } from '@smui/button';
-	import { queueStore } from '$lib/queueStore';
+	import { queueStore, deleteQueue, renameQueue } from '$lib/queueStore';
 	import { selectedQueue } from '$lib/selectedQueue';
 
 	function focusNode(node: HTMLElement) {
@@ -24,26 +24,15 @@
 		snackbarWithoutClose.open();
 	}
 
-	function deleteQueue() {
+	function handleDeleteQueue() {
 		const queueId = $selectedQueue;
 		selectedQueue.set('');
-		queueStore.update((queues) => {
-			const { [queueId]: queue, ...rest } = queues;
-			return rest;
-		});
+		deleteQueue(queueId);
 	}
 
 	let newQueueName = '';
-	function renameQueue() {
-		queueStore.update((queues) => {
-			const queueValues = queues[$selectedQueue];
-			const withRenamedQueue = {
-				...queues,
-				[newQueueName]: { ...queueValues, name: newQueueName },
-			};
-			const { [$selectedQueue]: queue, ...rest } = withRenamedQueue;
-			return rest;
-		});
+	function handleRenameQueue() {
+		renameQueue({ queueId: $selectedQueue, newQueueName });
 		selectedQueue.set(newQueueName);
 	}
 
@@ -91,7 +80,7 @@
 		<Button on:click={() => (deleteDialogOpen = false)}>
 			<ButtonLabel>Cancel</ButtonLabel>
 		</Button>
-		<Button on:click={deleteQueue}>
+		<Button on:click={handleDeleteQueue}>
 			<ButtonLabel>Delete</ButtonLabel>
 		</Button>
 	</Actions>
@@ -110,7 +99,7 @@
 		<Button on:click={() => (renameDialogOpen = false)}>
 			<ButtonLabel>Cancel</ButtonLabel>
 		</Button>
-		<Button on:click={renameQueue}>
+		<Button on:click={handleRenameQueue}>
 			<ButtonLabel>Rename</ButtonLabel>
 		</Button>
 	</Actions>

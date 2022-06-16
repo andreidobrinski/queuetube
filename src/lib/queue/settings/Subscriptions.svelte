@@ -4,7 +4,7 @@
 	import IconButton from '@smui/icon-button';
 	import ChannelImage from '$lib/queue/ChannelImage.svelte';
 	import type { SubscriptionItem } from '$lib/api/types';
-	import { queueStore } from '$lib/queueStore';
+	import { queueStore, addChannelToQueue } from '$lib/queueStore';
 	import { selectedQueue } from '$lib/selectedQueue';
 	import { getSubscribedChannels, getSecondLatestUploadFromChannel } from '$lib/api';
 
@@ -28,30 +28,18 @@
 
 	async function addChannel(channel: SubscriptionItem) {
 		const channelId = channel.snippet.resourceId.channelId;
-		const name = channel.snippet.title;
 		const secondLastestUpload = await getSecondLatestUploadFromChannel(channelId);
-		queueStore.update((queues) => {
-			const currentQueue = queues[$selectedQueue];
-			return {
-				...queues,
-				[$selectedQueue]: {
-					...currentQueue,
-					channels: {
-						...currentQueue.channels,
-						[channelId]: {
-							id: channelId,
-							name,
-							thumbnails: channel.snippet.thumbnails,
-							latestViewed: {
-								videoId: secondLastestUpload.contentDetails.videoId,
-								videoPublishedAt: secondLastestUpload.contentDetails.videoPublishedAt,
-								playlistItemId: secondLastestUpload.id,
-							},
-						},
-					},
-				},
-			};
-		});
+		const newChannel = {
+			id: channelId,
+			name: channel.snippet.title,
+			thumbnails: channel.snippet.thumbnails,
+			latestViewed: {
+				videoId: secondLastestUpload.contentDetails.videoId,
+				videoPublishedAt: secondLastestUpload.contentDetails.videoPublishedAt,
+				playlistItemId: secondLastestUpload.id,
+			},
+		};
+		addChannelToQueue({ queueId: $selectedQueue, newChannel });
 		subscriptions = subscriptions.filter((subscription) => subscription.id !== channel.id);
 	}
 </script>

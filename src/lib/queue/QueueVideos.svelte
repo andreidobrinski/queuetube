@@ -5,7 +5,7 @@
 	import dayjs from 'dayjs';
 	import duration from 'dayjs/plugin/duration';
 	import { selectedQueue } from '$lib/selectedQueue';
-	import { queueStore } from '$lib/queueStore';
+	import { queueStore, addNewVideosToQueue, removeVideoFromQueue } from '$lib/queueStore';
 	import { getChannelsByIds, getVideosByIds, getPlaylistItemsById, getQueueUrl } from '$lib/api';
 
 	dayjs.extend(duration);
@@ -39,16 +39,7 @@
 			duration: video.contentDetails.duration,
 		}));
 
-		queueStore.update((queues) => {
-			const currentQueue = queues[$selectedQueue];
-			return {
-				...queues,
-				[$selectedQueue]: {
-					...currentQueue,
-					videos: [...currentQueue.videos, ...newVideos],
-				},
-			};
-		});
+		addNewVideosToQueue({ newVideos, queueId: $selectedQueue });
 	}
 
 	function filterExistingVideoIds(newVideoIds: Array<string>) {
@@ -75,39 +66,6 @@
 		});
 
 		return videos;
-	}
-
-	function deleteVideo(video: any) {
-		const { id, channelId } = video;
-		queueStore.update((queues) => {
-			const currentQueue = queues[$selectedQueue];
-
-			const mostRecentViewedVideoTime =
-				currentQueue.channels[channelId].latestViewed?.videoPublishedAt;
-			const isDeletedVideoMostRecent = dayjs(video.publishedAt).isAfter(
-				dayjs(mostRecentViewedVideoTime)
-			);
-			const updatedRecentVideo = {
-				videoId: video.id,
-				videoPublishedAt: video.publishedAt,
-			};
-			return {
-				...queues,
-				[$selectedQueue]: {
-					...currentQueue,
-					videos: currentQueue.videos.filter((video) => video.id !== id),
-					channels: {
-						...currentQueue.channels,
-						[channelId]: {
-							...currentQueue.channels[channelId],
-							latestViewed: isDeletedVideoMostRecent
-								? updatedRecentVideo
-								: { ...currentQueue.channels[channelId].latestViewed },
-						},
-					},
-				},
-			};
-		});
 	}
 
 	let queueUrl = '';
@@ -154,7 +112,7 @@
 			aria-label={`remove video titled ${video.title} from queue ${$selectedQueue}`}
 			class="material-icons"
 			style="margin-left: auto; color: green;"
-			on:click={() => deleteVideo(video)}
+			on:click={() => removeVideoFromQueue({ video, queueId: $selectedQueue })}
 		>
 			check
 		</IconButton>

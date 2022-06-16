@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import { queueStore } from '$lib/queueStore';
+	import { queueStore, addQueue } from '$lib/queueStore';
 	import Textfield from '@smui/textfield';
 	import HelperText from '@smui/textfield/helper-text';
 	import Button, { Icon } from '@smui/button';
@@ -36,9 +36,7 @@
 				<Button
 					disabled={isAddButtonDisabled}
 					on:click={() => {
-						queueStore.update((value) => {
-							return { ...value, [newQueueName]: { name: newQueueName, channels: {}, videos: [] } };
-						});
+						addQueue(newQueueName);
 						isAddingQueue = false;
 						newQueueName = '';
 					}}
