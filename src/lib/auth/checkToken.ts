@@ -8,6 +8,9 @@ interface CheckTokenResponse {
 
 export async function checkToken() {
   const { token } = get(authStore);
+
+  if (!token) return;
+
   const tokenInfoUrl = `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${token}`;
 
   const res = await fetch(tokenInfoUrl);
