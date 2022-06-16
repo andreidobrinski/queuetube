@@ -42,6 +42,11 @@
 		addChannelToQueue({ queueId: $selectedQueue, newChannel });
 		subscriptions = subscriptions.filter((subscription) => subscription.id !== channel.id);
 	}
+
+	function handleDoneAdding() {
+		subscriptions = [];
+		nextPageToken = null;
+	}
 </script>
 
 {#if !subscriptions.length}
@@ -50,7 +55,7 @@
 		Add Channel
 	</Button>
 {:else}
-	<Button on:click={() => (subscriptions = [])}>Done Adding</Button>
+	<Button on:click={handleDoneAdding}>Done Adding</Button>
 	<p>My Subscriptions</p>
 {/if}
 {#each subscriptions as subscription (subscription.id)}
