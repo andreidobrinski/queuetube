@@ -3,6 +3,7 @@
 	import type { SnackbarComponentDev } from '@smui/snackbar';
 	import IconButton from '@smui/icon-button';
 	import Textfield from '@smui/textfield';
+	import HelperText from '@smui/textfield/helper-text';
 	import type { MenuComponentDev } from '@smui/menu';
 	import Menu from '@smui/menu';
 	import List, { Item, Separator, Text } from '@smui/list';
@@ -43,6 +44,8 @@
 	let renameDialogOpen = false;
 	let exportDialogOpen = false;
 	let exportSuccess: boolean | null = null;
+
+	$: isRenameButtonDisabled = Object.keys($queueStore).includes(newQueueName);
 </script>
 
 <div>
@@ -93,13 +96,17 @@
 >
 	<Title id="rename-title">Rename Queue</Title>
 	<Content id="rename-content">
-		<Textfield variant="outlined" bind:value={newQueueName} use={[focusNode]} />
+		<Textfield variant="outlined" bind:value={newQueueName} use={[focusNode]}>
+			<HelperText slot="helper" persistent invalid>
+				{isRenameButtonDisabled ? 'Queue name already exists' : ''}
+			</HelperText>
+		</Textfield>
 	</Content>
 	<Actions>
 		<Button on:click={() => (renameDialogOpen = false)}>
 			<ButtonLabel>Cancel</ButtonLabel>
 		</Button>
-		<Button on:click={handleRenameQueue}>
+		<Button disabled={isRenameButtonDisabled} on:click={handleRenameQueue}>
 			<ButtonLabel>Rename</ButtonLabel>
 		</Button>
 	</Actions>
