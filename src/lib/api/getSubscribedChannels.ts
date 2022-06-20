@@ -1,5 +1,4 @@
-import { get } from 'svelte/store';
-import { authStore } from '$lib/auth/authStore';
+import { API } from './setupApi';
 
 export interface ChannelThumbnails {
   default: {
@@ -44,20 +43,16 @@ interface Params {
 }
 
 export async function getSubscribedChannels({ pageToken }: Params): Promise<SubscriptionResponse> {
-  const { token } = get(authStore);
+  const params = {
+    part: 'snippet,contentDetails,id',
+    maxResults: 50,
+    mine: true,
+    ...(pageToken && {
+      pageToken
+    })
+  }
 
-  const baseUrl = 'https://www.googleapis.com/youtube/v3/subscriptions';
-  const params = [
-    '?part=snippet%2CcontentDetails%2Cid',
-    '&maxResults=50',
-    '&mine=true',
-    `&access_token=${token}`,
-    `${pageToken ? `&pageToken=${pageToken}` : ''}`
-  ].join('');
-  const url = `${baseUrl}${params}`;
-
-  const res = await fetch(url);
-  const data: SubscriptionResponse = await res.json();
+  const { data } = await API.get('subscriptions', { params });
 
   return data;
 }

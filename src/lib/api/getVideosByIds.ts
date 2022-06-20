@@ -1,5 +1,4 @@
-import { get } from 'svelte/store';
-import { authStore } from '$lib/auth/authStore';
+import { API } from './setupApi';
 
 interface Thumbnail {
   url: string;
@@ -32,19 +31,13 @@ interface GetVideosResponse {
 }
 
 export async function getVideosByIds(videoIds: string): Promise<GetVideosResponse> {
-  const { token } = get(authStore);
+  const params = {
+    part: 'contentDetails,id,snippet',
+    maxResults: 50,
+    id: videoIds
+  };
 
-  const baseUrl = 'https://www.googleapis.com/youtube/v3/videos';
-  const params = [
-    '?part=contentDetails%2Cid%2Csnippet',
-    '&maxResults=50',
-    `&id=${videoIds}`,
-    `&access_token=${token}`,
-  ].join('');
-  const url = `${baseUrl}${params}`;
-
-  const res = await fetch(url);
-  const data: GetVideosResponse = await res.json();
+  const { data } = await API.get('videos', { params });
 
   return data;
 }
