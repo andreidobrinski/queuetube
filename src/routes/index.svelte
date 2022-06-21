@@ -6,6 +6,7 @@
 	import { onMount } from 'svelte';
 	import Button from '@smui/button';
 	import { base } from '$app/paths';
+	import ApiError from '$lib/api/error/ApiError.svelte';
 
 	let isLoading = true;
 	$: isLoggedIn = $authStore.isLoggedIn;
@@ -28,6 +29,7 @@
 {:else}
 	<App />
 {/if}
+<ApiError />
 
 <style>
 	h1 {
