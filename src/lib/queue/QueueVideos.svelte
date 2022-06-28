@@ -93,9 +93,13 @@
 	<Icon class="material-icons">play_arrow</Icon>
 	<Label>Play All ({$queueStore[$selectedQueue].videos.length})</Label>
 </Button>
-{#each $queueStore[$selectedQueue].videos as video}
+{#each $queueStore[$selectedQueue].videos as video, videoIndex}
 	<div style="display: flex; align-items: center; margin-bottom: 16px;">
-		<div style="display: grid; grid-template-columns: 1fr;">
+		<a
+			href={`${queueUrl}&index=${videoIndex}`}
+			aria-label={`open playlist starting at video titled ${video.title}`}
+			class="thumbnail-link"
+		>
 			<img
 				src={video.thumbnails.medium.url}
 				alt={`image for video ${video.title}`}
@@ -103,7 +107,7 @@
 				referrerpolicy="no-referrer"
 			/>
 			<small class="duration">{formatDuration(video.duration)}</small>
-		</div>
+		</a>
 		<div style="display: flex; flex-direction: column;">
 			<p style="margin-bottom: 0px;">{video.title}</p>
 			<p style="margin-top: 0px; color: dimgray;">{video.channelTitle}</p>
@@ -120,9 +124,19 @@
 {/each}
 
 <style>
-	.video-image {
+	.thumbnail-link {
+		cursor: pointer;
+		text-decoration: none;
+		display: grid;
+		grid-template-columns: 1fr;
+		border: none;
+		padding: 0;
 		border-radius: 4px;
 		margin-right: 8px;
+	}
+
+	.video-image {
+		border-radius: 4px;
 		aspect-ratio: 16 / 9;
 		height: 60px;
 		grid-area: 1 / 1;
@@ -132,7 +146,6 @@
 		grid-area: 1 / 1;
 		justify-self: end;
 		align-self: end;
-		margin-right: 8px;
 		font-size: 0.8rem;
 		font-weight: bold;
 		line-height: 0.9;
