@@ -7,6 +7,7 @@
 	import { selectedQueue } from '$lib/selectedQueue';
 	import { queueStore, addNewVideosToQueue, removeVideoFromQueue } from '$lib/queueStore';
 	import { getChannelsByIds, getVideosByIds, getPlaylistItemsById, getQueueUrl } from '$lib/api';
+	import Item from '@smui/list/src/Item.svelte';
 
 	dayjs.extend(duration);
 
@@ -27,7 +28,7 @@
 
 		const filteredVideoIds = filterExistingVideoIds(newVideoIds.flat());
 
-		const videoData = await getVideosByIds(filteredVideoIds.join(','));
+		const videoData = await getVideosByIds(filteredVideoIds);
 
 		const newVideos = videoData.items.map((video) => ({
 			id: video.id,
