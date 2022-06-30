@@ -7,7 +7,6 @@
 	import { selectedQueue } from '$lib/selectedQueue';
 	import { queueStore, addNewVideosToQueue, removeVideoFromQueue } from '$lib/queueStore';
 	import { getChannelsByIds, getVideosByIds, getPlaylistItemsById, getQueueUrl } from '$lib/api';
-	import Item from '@smui/list/src/Item.svelte';
 
 	dayjs.extend(duration);
 
@@ -94,12 +93,13 @@
 	<Icon class="material-icons">play_arrow</Icon>
 	<Label>Play All ({$queueStore[$selectedQueue].videos.length})</Label>
 </Button>
-{#each $queueStore[$selectedQueue].videos as video, videoIndex}
+{#each $queueStore[$selectedQueue].videos as video}
 	<div style="display: flex; align-items: center; margin-bottom: 16px;">
-		<a
-			href={`${queueUrl}&index=${videoIndex}`}
+		<button
+			on:click={() => (window.location.href = getQueueUrl(video.id))}
 			aria-label={`open playlist starting at video titled ${video.title}`}
 			class="thumbnail-link"
+			type="button"
 		>
 			<img
 				src={video.thumbnails.medium.url}
@@ -108,7 +108,7 @@
 				referrerpolicy="no-referrer"
 			/>
 			<small class="duration">{formatDuration(video.duration)}</small>
-		</a>
+		</button>
 		<div style="display: flex; flex-direction: column;">
 			<p style="margin-bottom: 0px;">{video.title}</p>
 			<p style="margin-top: 0px; color: dimgray;">{video.channelTitle}</p>
