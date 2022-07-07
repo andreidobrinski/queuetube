@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import IconButton from '@smui/icon-button';
-	import Button, { Icon, Label } from '@smui/button';
+	import Button, { Label } from '@smui/button';
 	import CircularProgress from '@smui/circular-progress';
 	import dayjs from 'dayjs';
 	import duration from 'dayjs/plugin/duration';
 	import { selectedQueue } from '$lib/selectedQueue';
+	import SvgIcon from '$lib/icons/SvgIcon.svelte';
 	import { queueStore, addNewVideosToQueue, removeVideoFromQueue } from '$lib/queueStore';
 	import { getChannelsByIds, getVideosByIds, getPlaylistItemsById, getQueueUrl } from '$lib/api';
+	import ButtonIcon from '$lib/icons/ButtonIcon.svelte';
 
 	dayjs.extend(duration);
 
@@ -96,7 +97,7 @@
 </script>
 
 <Button href={queueUrl} style="margin-bottom: 1.67em; width: 100%;">
-	<Icon class="material-icons">play_arrow</Icon>
+	<SvgIcon icon="PlayArrow" />
 	<Label>Play All ({$queueStore[$selectedQueue].videos.length})</Label>
 </Button>
 {#if isFetchingVideos}
@@ -124,14 +125,12 @@
 			<p style="margin-bottom: 0px;">{video.title}</p>
 			<p style="margin-top: 0px; color: dimgray;">{video.channelTitle}</p>
 		</div>
-		<IconButton
-			aria-label={`remove video titled ${video.title} from queue ${$selectedQueue}`}
-			class="material-icons"
-			style="margin-left: auto; color: green;"
-			on:click={() => removeVideoFromQueue({ video, queueId: $selectedQueue })}
-		>
-			check
-		</IconButton>
+		<ButtonIcon
+			onClick={() => removeVideoFromQueue({ video, queueId: $selectedQueue })}
+			icon="Check"
+			ariaText={`remove video titled ${video.title} from queue ${$selectedQueue}`}
+			style="margin-left: auto; color: #818192;"
+		/>
 	</div>
 {/each}
 

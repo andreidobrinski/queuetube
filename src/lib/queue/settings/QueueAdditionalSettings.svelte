@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Snackbar, { Label as SnackbarLabel } from '@smui/snackbar';
 	import type { SnackbarComponentDev } from '@smui/snackbar';
-	import IconButton from '@smui/icon-button';
 	import Textfield from '@smui/textfield';
 	import HelperText from '@smui/textfield/helper-text';
 	import type { MenuComponentDev } from '@smui/menu';
@@ -11,6 +10,7 @@
 	import Button, { Label as ButtonLabel } from '@smui/button';
 	import { queueStore, deleteQueue, renameQueue } from '$lib/queueStore';
 	import { selectedQueue } from '$lib/selectedQueue';
+	import ButtonIcon from '$lib/icons/ButtonIcon.svelte';
 
 	function focusNode(node: HTMLElement) {
 		node.focus();
@@ -49,13 +49,11 @@
 </script>
 
 <div>
-	<IconButton
-		aria-label="rename or delete queue"
-		class="material-icons"
-		on:click={() => menu.setOpen(true)}
-	>
-		more_vert
-	</IconButton>
+	<ButtonIcon
+		onClick={() => menu.setOpen(true)}
+		icon="MoreVert"
+		ariaText="rename or delete queue"
+	/>
 	<Menu bind:this={menu}>
 		<List>
 			<Item on:SMUI:action={() => (renameDialogOpen = true)}>

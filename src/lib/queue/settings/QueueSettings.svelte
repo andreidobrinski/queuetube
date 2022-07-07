@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { crossfade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
-	import IconButton from '@smui/icon-button';
 	import { queueStore, deleteChannelFromQueue } from '$lib/queueStore';
 	import { selectedQueue } from '$lib/selectedQueue';
 	import ChannelImage from '$lib/queue/ChannelImage.svelte';
 	import QueueAdditionalSettings from './QueueAdditionalSettings.svelte';
 	import Subscriptions from './Subscriptions.svelte';
+	import ButtonIcon from '$lib/icons/ButtonIcon.svelte';
 
 	const crossfadeTransition = crossfade({});
 	const [_, receive] = crossfadeTransition;
@@ -39,13 +39,11 @@
 			name={channel.name}
 		/>
 		<p>{channel.name}</p>
-		<IconButton
-			aria-label={`delete channel ${channel.name} from queue ${$selectedQueue}`}
-			class="material-icons"
-			on:click={() => deleteChannelFromQueue({ channelId: channel.id, queueId: $selectedQueue })}
-		>
-			delete
-		</IconButton>
+		<ButtonIcon
+			onClick={() => deleteChannelFromQueue({ channelId: channel.id, queueId: $selectedQueue })}
+			icon="Delete"
+			ariaText={`delete channel ${channel.name} from queue ${$selectedQueue}`}
+		/>
 	</div>
 {/each}
 <Subscriptions {crossfadeTransition} />

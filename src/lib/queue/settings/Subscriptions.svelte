@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { flip } from 'svelte/animate';
-	import Button, { Icon } from '@smui/button';
-	import IconButton from '@smui/icon-button';
+	import Button from '@smui/button';
 	import ChannelImage from '$lib/queue/ChannelImage.svelte';
 	import type { SubscriptionItem } from '$lib/api/types';
 	import { queueStore, addChannelToQueue } from '$lib/queueStore';
 	import { selectedQueue } from '$lib/selectedQueue';
 	import { getSubscribedChannels, getSecondLatestUploadFromChannel } from '$lib/api';
+	import SvgIcon from '$lib/icons/SvgIcon.svelte';
+	import ButtonIcon from '$lib/icons/ButtonIcon.svelte';
 
 	export let crossfadeTransition;
 	const [send, receive] = crossfadeTransition;
@@ -51,7 +52,7 @@
 
 {#if !subscriptions.length}
 	<Button on:click={getSubscriptions}>
-		<Icon class="material-icons">add</Icon>
+		<SvgIcon icon="Add" />
 		Add Channel
 	</Button>
 {:else}
@@ -65,13 +66,11 @@
 		in:receive={{ key: subscription.snippet.resourceId.channelId }}
 		out:send={{ key: subscription.snippet.resourceId.channelId }}
 	>
-		<IconButton
-			on:click={() => addChannel(subscription)}
-			aria-label={`add channel ${subscription.snippet.title} to queue ${$selectedQueue}`}
-			class="material-icons"
-		>
-			add
-		</IconButton>
+		<ButtonIcon
+			onClick={() => addChannel(subscription)}
+			icon="Add"
+			ariaText={`add channel ${subscription.snippet.title} to queue ${$selectedQueue}`}
+		/>
 		<ChannelImage
 			src={subscription.snippet.thumbnails.default.url ||
 				subscription.snippet.thumbnails.medium.url}

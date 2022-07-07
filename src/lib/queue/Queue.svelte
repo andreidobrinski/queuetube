@@ -2,8 +2,9 @@
 	import { fade } from 'svelte/transition';
 	import { queueStore } from '$lib/queueStore';
 	import { selectedQueue } from '$lib/selectedQueue';
-	import Tab, { Label, Icon } from '@smui/tab';
-	import IconButton from '@smui/icon-button';
+	import Tab, { Label } from '@smui/tab';
+	import ButtonIcon from '$lib/icons/ButtonIcon.svelte';
+	import SvgIcon from '$lib/icons/SvgIcon.svelte';
 	import TabBar from '@smui/tab-bar';
 	import QueueVideos from '$lib/queue/QueueVideos.svelte';
 	import QueueSettings from '$lib/queue/settings/QueueSettings.svelte';
@@ -11,11 +12,11 @@
 	let tabs = [
 		{
 			label: 'Queue',
-			icon: 'playlist_play',
+			icon: 'PlaylistPlay',
 		},
 		{
 			label: 'Settings',
-			icon: 'settings',
+			icon: 'Settings',
 		},
 	];
 
@@ -25,19 +26,13 @@
 </script>
 
 <div style="display: flex; align-items: center;">
-	<IconButton
-		on:click={() => selectedQueue.set('')}
-		class="material-icons"
-		aria-label="Back to QueueList"
-	>
-		arrow_back
-	</IconButton>
+	<ButtonIcon onClick={() => selectedQueue.set('')} icon="ArrowBack" ariaText="Back to QueueList" />
 	<h5>{$selectedQueue}</h5>
 </div>
 
 <TabBar {tabs} let:tab bind:active style="margin-bottom: 1.67em;">
 	<Tab {tab}>
-		<Icon class="material-icons">{tab.icon}</Icon>
+		<SvgIcon icon={tab.icon} />
 		<Label>{tab.label}</Label>
 	</Tab>
 </TabBar>

@@ -3,7 +3,8 @@
 	import { queueStore, addQueue } from '$lib/queueStore';
 	import Textfield from '@smui/textfield';
 	import HelperText from '@smui/textfield/helper-text';
-	import Button, { Icon } from '@smui/button';
+	import Button from '@smui/button';
+	import SvgIcon from '$lib/icons/SvgIcon.svelte';
 
 	let isAddingQueue = false;
 	let newQueueName = '';
@@ -49,7 +50,7 @@
 	{:else}
 		<div in:fade>
 			<Button on:click={() => (isAddingQueue = true)}>
-				<Icon class="material-icons">add</Icon>
+				<SvgIcon icon="Add" />
 				Add a Queue
 			</Button>
 		</div>
