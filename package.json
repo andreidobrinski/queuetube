@@ -24,6 +24,7 @@
     "@material/typography": "^13.0.0",
     "@playwright/test": "^1.21.0",
     "@smui/button": "6.0.0-beta.16",
+    "@smui/circular-progress": "*",
     "@smui/common": "6.0.0-beta.16",
     "@smui/dialog": "6.0.0-beta.16",
     "@smui/icon-button": "6.0.0-beta.16",

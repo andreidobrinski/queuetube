@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import IconButton from '@smui/icon-button';
 	import Button, { Icon, Label } from '@smui/button';
+	import CircularProgress from '@smui/circular-progress';
 	import dayjs from 'dayjs';
 	import duration from 'dayjs/plugin/duration';
 	import { selectedQueue } from '$lib/selectedQueue';
@@ -12,9 +13,12 @@
 
 	$: channels = $queueStore[$selectedQueue]?.channels || {};
 	$: channelIds = Object.keys(channels).join(',');
+	let isFetchingVideos = true;
 
 	async function getNewVideos() {
 		if (!channelIds) return;
+
+		isFetchingVideos = true;
 
 		const channelData = await getChannelsByIds(channelIds);
 
@@ -40,6 +44,8 @@
 		}));
 
 		addNewVideosToQueue({ newVideos, queueId: $selectedQueue });
+
+		isFetchingVideos = false;
 	}
 
 	function filterExistingVideoIds(newVideoIds: Array<string>) {
@@ -93,6 +99,11 @@
 	<Icon class="material-icons">play_arrow</Icon>
 	<Label>Play All ({$queueStore[$selectedQueue].videos.length})</Label>
 </Button>
+{#if isFetchingVideos}
+	<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+		<CircularProgress style="height: 32px; width: 32px;" indeterminate />
+	</div>
+{/if}
 {#each $queueStore[$selectedQueue].videos as video}
 	<div style="display: flex; align-items: center; margin-bottom: 16px;">
 		<button
