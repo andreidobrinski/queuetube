@@ -55,7 +55,7 @@
 		position: sticky;
 		top: 0;
 		z-index: 1;
-		background: var(--bgColor);
+		background-color: var(--bgColor);
 	}
 
 	h5 {
