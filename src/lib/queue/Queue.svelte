@@ -25,7 +25,7 @@
 	let active = hasChannelsInQueue ? tabs[0] : tabs[1];
 </script>
 
-<div style="display: flex; align-items: center;">
+<div class="sticky-header">
 	<ButtonIcon onClick={() => selectedQueue.set('')} icon="ArrowBack" ariaText="Back to QueueList" />
 	<h5>{$selectedQueue}</h5>
 </div>
@@ -47,3 +47,18 @@
 		<QueueSettings />
 	</div>
 {/if}
+
+<style>
+	.sticky-header {
+		display: flex;
+		align-items: center;
+		position: sticky;
+		top: 0;
+		z-index: 1;
+		background: var(--bgColor);
+	}
+
+	h5 {
+		margin: 0.8em;
+	}
+</style>
