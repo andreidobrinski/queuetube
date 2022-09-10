@@ -24,7 +24,6 @@ export function getQueueUrl(videoId?: string) {
     const indexOfSelectedId = videoIds.indexOf(videoId);
     const videosAfterSelectedId = videoIds.slice(indexOfSelectedId);
     videoIdString = videosAfterSelectedId.join(',');
-    console.log('videoIdString', videoIdString);
   }
 
   const url = `${baseUrl}${videoIdString}`;
