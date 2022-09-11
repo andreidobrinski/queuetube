@@ -38,6 +38,15 @@
 	<li>Press the checkmark button next to a video to remove it from the queue</li>
 	<li>Repeat for as many queues as you like!</li>
 </ol>
+<p>
+	I recommend using the app on your phone and adding the icon to your home screen on either your <a
+		href="https://www.macrumors.com/how-to/add-a-web-link-to-home-screen-iphone-ipad/">iOS</a
+	>
+	or
+	<a href="https://www.androidauthority.com/add-website-android-iphone-home-screen-3181682/"
+		>Android</a
+	> device.
+</p>
 
 <h2>What about my data? How is it stored and used?</h2>
 <p>
@@ -54,7 +63,10 @@
 	only app and doesn't have it's own servers. QueueTube does have an export feature where you can pull
 	down all of your data as plain text.
 </p>
-<p>This also means that clearing your browser's cache will remove all QueueTube data.</p>
+<p>
+	This also means that <strong>clearing your browser's cache will remove all QueueTube data.</strong
+	>
+</p>
 <p>
 	See for yourself! The QueueTube codebase is open source and can be found on <a
 		href="https://github.com/andreidobrinski/queuetube"
@@ -82,7 +94,8 @@
 		href="https://twitter.com/andreidobrinski"
 		target="_blank"
 		rel="noopener noreferrer">@andreidobrinski</a
-	>.
+	>. You can also file an issue on the
+	<a href="https://github.com/andreidobrinski/queuetube">GitHub repo.</a>
 </p>
 
 <a href={`${base}/`}>Back to app</a>
