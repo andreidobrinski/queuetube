@@ -4,6 +4,7 @@ import { getPlaylistItemsById } from './getPlaylistItemsById';
 import { getQueueUrl } from './getQueueUrl';
 import { getSubscribedChannels } from './getSubscribedChannels';
 import { getSecondLatestUploadFromChannel } from './getSecondLatestUploadFromChannel';
+import { getAuthUrl } from './getAuthUrl';
 
 export {
   getChannelsByIds,
@@ -12,4 +13,5 @@ export {
   getQueueUrl,
   getSubscribedChannels,
   getSecondLatestUploadFromChannel,
+  getAuthUrl,
 }

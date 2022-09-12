@@ -16,7 +16,10 @@ export async function checkToken() {
   const res = await fetch(tokenInfoUrl);
   const data: CheckTokenResponse = await res.json();
 
+  // user has a valid token
   if (data.expires_in) {
     authStore.update(value => ({ ...value, isLoggedIn: true }))
+  } else {
+    authStore.set({ token: '', isLoggedIn: false }); // token is expired or invalid
   }
 }

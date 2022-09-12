@@ -10,6 +10,7 @@
 
 	let isLoading = true;
 	$: isLoggedIn = $authStore.isLoggedIn;
+	const isNewUser = !localStorage.getItem('queues');
 
 	onMount(async () => {
 		await checkToken();
@@ -23,7 +24,7 @@
 
 {#if isLoading}
 	<p>Loading...</p>
-{:else if !isLoggedIn}
+{:else if !isLoggedIn && isNewUser}
 	<GoogleAuthLink />
 	<Button href={`${base}/about`} style="width: 100%; margin-top: 1.67em;">About</Button>
 {:else}

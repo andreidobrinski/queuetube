@@ -3,6 +3,8 @@
 	import Button from '@smui/button';
 	import ChannelImage from '$lib/queue/ChannelImage.svelte';
 	import type { SubscriptionItem } from '$lib/api/types';
+	import { authStore } from '$lib/auth/authStore';
+	import { getAuthUrl } from '$lib/api';
 	import { queueStore, addChannelToQueue } from '$lib/queueStore';
 	import { selectedQueue } from '$lib/selectedQueue';
 	import { getSubscribedChannels, getSecondLatestUploadFromChannel } from '$lib/api';
@@ -48,10 +50,16 @@
 		subscriptions = [];
 		nextPageToken = null;
 	}
+
+	$: isLoggedIn = $authStore.isLoggedIn;
+	const authUrl = getAuthUrl();
 </script>
 
+{#if !isLoggedIn}
+	<Button href={authUrl}>Log In to Add Channels</Button>
+{/if}
 {#if !subscriptions.length}
-	<Button on:click={getSubscriptions}>
+	<Button on:click={getSubscriptions} disabled={!isLoggedIn}>
 		<SvgIcon icon="Add" />
 		Add Channel
 	</Button>
