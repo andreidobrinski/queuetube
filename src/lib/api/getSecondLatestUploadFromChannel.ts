@@ -28,7 +28,7 @@ interface PlaylistResponse {
 
 export async function getSecondLatestUploadFromChannel(channelId: string): Promise<PlaylistItem> {
   const channelParams = {
-    part: 'contentDetails,id,snippet,topicDetails',
+    part: 'contentDetails,id,snippet',
     id: channelId
   };
 

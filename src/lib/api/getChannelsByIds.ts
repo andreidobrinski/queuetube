@@ -15,7 +15,7 @@ interface GetChannelsResponse {
 
 export async function getChannelsByIds(channelIds: string): Promise<GetChannelsResponse> {
   const params = {
-    part: 'contentDetails,id,snippet,topicDetails',
+    part: 'contentDetails,id,snippet',
     id: channelIds
   };
 
