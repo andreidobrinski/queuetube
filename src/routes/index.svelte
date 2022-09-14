@@ -11,6 +11,7 @@
 	let isLoading = true;
 	$: isLoggedIn = $authStore.isLoggedIn;
 	const isNewUser = !localStorage.getItem('queues');
+	const showLogin = !isLoggedIn && isNewUser;
 
 	onMount(async () => {
 		await checkToken();
@@ -18,13 +19,13 @@
 	});
 </script>
 
-<h1 class={`mdc-typography--headline${isLoggedIn ? '4' : '2'}`}>
+<h1 class={`mdc-typography--headline${showLogin ? '2' : '4'}`}>
 	<span>QueueTube</span>
 </h1>
 
 {#if isLoading}
 	<p>Loading...</p>
-{:else if !isLoggedIn && isNewUser}
+{:else if showLogin}
 	<GoogleAuthLink />
 	<Button href={`${base}/about`} style="width: 100%; margin-top: 1.67em;">About</Button>
 {:else}
