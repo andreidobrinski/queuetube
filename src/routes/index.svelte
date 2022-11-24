@@ -1,11 +1,9 @@
 <script lang="ts">
 	import App from '$lib/App.svelte';
+	import Welcome from '$lib/Welcome.svelte';
 	import { authStore } from '$lib/auth/authStore';
-	import GoogleAuthLink from '$lib/auth/GoogleAuthLink.svelte';
 	import { checkToken } from '$lib/auth/checkToken';
 	import { onMount } from 'svelte';
-	import Button from '@smui/button';
-	import { base } from '$app/paths';
 	import ApiError from '$lib/api/error/ApiError.svelte';
 
 	let isLoading = true;
@@ -26,8 +24,7 @@
 {#if isLoading}
 	<p>Loading...</p>
 {:else if showLogin}
-	<GoogleAuthLink />
-	<Button href={`${base}/about`} style="width: 100%; margin-top: 1.67em;">About</Button>
+	<Welcome />
 {:else}
 	<App />
 {/if}

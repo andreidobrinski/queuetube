@@ -6,8 +6,8 @@
 
 <h2>What is it?</h2>
 <p>
-	It's an app to create YouTube playlists by linking your subscriptions to a queue. As videos are
-	released, they are automatically added to the queues you've created.
+	It's an app to create YouTube playlists by grouping uploads from related channels into a queue. As
+	videos are released, they are automatically added to the queues you've created.
 </p>
 
 <h2>Why would I use it?</h2>

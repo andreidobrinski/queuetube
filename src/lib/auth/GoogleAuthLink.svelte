@@ -5,4 +5,4 @@
 	const authUrl = getAuthUrl();
 </script>
 
-<Button href={authUrl} style="width: 100%; margin-top: 1.67em;">Log In</Button>
+<Button href={authUrl} style="width: 100%; margin-top: 1.67em;">Login with Google</Button>
