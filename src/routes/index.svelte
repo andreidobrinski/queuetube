@@ -9,7 +9,7 @@
 	let isLoading = true;
 	$: isLoggedIn = $authStore.isLoggedIn;
 	const isNewUser = localStorage.getItem('queues') === '{}';
-	const showLogin = !isLoggedIn && isNewUser;
+	$: showLogin = !isLoggedIn && isNewUser;
 
 	onMount(async () => {
 		await checkToken();
