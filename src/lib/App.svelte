@@ -6,11 +6,11 @@
 </script>
 
 {#if $selectedQueue}
-	<div in:fade>
+	<main in:fade>
 		<Queue />
-	</div>
+	</main>
 {:else}
-	<div in:fade>
+	<main in:fade>
 		<QueueList />
-	</div>
+	</main>
 {/if}

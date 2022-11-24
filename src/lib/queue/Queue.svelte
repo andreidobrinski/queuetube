@@ -25,10 +25,10 @@
 	let active = hasChannelsInQueue ? tabs[0] : tabs[1];
 </script>
 
-<div class="sticky-header">
+<header>
 	<ButtonIcon onClick={() => selectedQueue.set('')} icon="ArrowBack" ariaText="Back to QueueList" />
 	<h5>{$selectedQueue}</h5>
-</div>
+</header>
 
 <TabBar {tabs} let:tab bind:active style="margin-bottom: 1.67em;">
 	<Tab {tab}>
@@ -49,7 +49,7 @@
 {/if}
 
 <style>
-	.sticky-header {
+	header {
 		display: flex;
 		align-items: center;
 		position: sticky;
