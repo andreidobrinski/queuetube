@@ -17,7 +17,10 @@
 	let isFetchingVideos = true;
 
 	async function getNewVideos() {
-		if (!channelIds) return;
+		if (!channelIds) {
+			isFetchingVideos = false;
+			return;
+		}
 
 		isFetchingVideos = true;
 
