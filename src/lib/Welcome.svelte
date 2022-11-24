@@ -14,7 +14,7 @@
 		queue.
 	</p>
 	<p>To learn more about QueueTube, visit the <a href={aboutUrl}>/about page</a>.</p>
-	<p>Login with your Google account to get started.</p>
+	<p>Login below with your Google account to get started.</p>
 	<GoogleAuthLink />
 </main>
 
