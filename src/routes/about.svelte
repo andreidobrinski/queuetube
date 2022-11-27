@@ -84,8 +84,8 @@
 	>, a frontend developer that loves the modern web.
 </p>
 <p>
-	I made QueueTube as a thank-you for my girlfriend. She managed a playlist for us manually in
-	YouTube and this serves to make her life a bit easier. You're welcome to use it too!
+	I made QueueTube as a thank-you for my fiancée. She managed a playlist for us manually in YouTube
+	and this serves to make her life a bit easier. You're welcome to use it too!
 </p>
 
 <h2>Where can I go with my feedback?</h2>
