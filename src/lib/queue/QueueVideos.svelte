@@ -109,7 +109,7 @@
 	</div>
 {/if}
 {#each $queueStore[$selectedQueue].videos as video}
-	<div style="display: flex; align-items: center; margin-bottom: 16px;">
+	<article style="display: flex; align-items: center; margin-bottom: 16px;">
 		<button
 			on:click={() => (window.location.href = getQueueUrl(video.id))}
 			aria-label={`open playlist starting at video titled ${video.title}`}
@@ -134,7 +134,7 @@
 			ariaText={`remove video titled ${video.title} from queue ${$selectedQueue}`}
 			style="margin-left: auto; color: #818192;"
 		/>
-	</div>
+	</article>
 {/each}
 
 <style>

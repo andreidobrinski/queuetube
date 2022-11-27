@@ -38,14 +38,14 @@
 </TabBar>
 
 {#if active === tabs[0]}
-	<div in:fade>
+	<section in:fade>
 		<QueueVideos />
-	</div>
+	</section>
 {/if}
 {#if active === tabs[1]}
-	<div in:fade>
+	<section in:fade>
 		<QueueSettings />
-	</div>
+	</section>
 {/if}
 
 <style>
