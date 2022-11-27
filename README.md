@@ -4,6 +4,8 @@ An app to create YouTube playlists by linking your subscriptions to a queue. As 
 
 [Demo](https://andreidobrinski.com/queuetube)
 
+![demo gif](./queuetube-demo.gif)
+
 ## Technologies Used
 
 - [SvelteKit](https://kit.svelte.dev/)
