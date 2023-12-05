@@ -1,15 +1,12 @@
 name: github pages
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 jobs:
   deploy:
     env:
       VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
