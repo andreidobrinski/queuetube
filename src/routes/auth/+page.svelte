@@ -2,6 +2,7 @@
 	import { authStore } from '$lib/auth/authStore';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	import { browser } from '$app/environment';
 
 	interface GoogleAuthResponse {
 		access_token: string;
@@ -13,16 +14,23 @@
 		token_type: string;
 	}
 
-	const { access_token: token } = location.hash
-		.split('#')[1]
-		.split('&')
-		.reduce((acc, current) => {
-			const [key, value] = current.split('=');
-			return {
-				...acc,
-				[key]: value,
-			};
-		}, {} as GoogleAuthResponse);
+	let token = null;
+	let googleAuthResponse = null;
+
+	if (browser) {
+		googleAuthResponse = location.hash
+			.split('#')[1]
+			.split('&')
+			.reduce((acc, current) => {
+				const [key, value] = current.split('=');
+				return {
+					...acc,
+					[key]: value,
+				};
+			}, {} as GoogleAuthResponse);
+	}
+
+	token = googleAuthResponse?.access_token;
 
 	if (token) {
 		authStore.set({

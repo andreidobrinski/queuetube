@@ -1,5 +1,5 @@
 import adapter from '@sveltejs/adapter-static';
-import preprocess from 'svelte-preprocess';
+import { vitePreprocess } from '@sveltejs/kit/vite';
 
 const isDevEnv = process.env.NODE_ENV === 'development';
 
@@ -7,21 +7,18 @@ const isDevEnv = process.env.NODE_ENV === 'development';
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: preprocess(),
+	preprocess: vitePreprocess(),
 
 	kit: {
-		prerender: {
-			default: true
-		},
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: null
+			fallback: null,
 		}),
 		paths: {
 			base: isDevEnv ? '' : '/queuetube',
 		},
-	}
+	},
 };
 
 export default config;

@@ -5,10 +5,11 @@
 	import { checkToken } from '$lib/auth/checkToken';
 	import { onMount } from 'svelte';
 	import ApiError from '$lib/api/error/ApiError.svelte';
+	import { browser } from '$app/environment';
 
 	let isLoading = true;
 	$: isLoggedIn = $authStore.isLoggedIn;
-	const isNewUser = localStorage.getItem('queues') === '{}';
+	const isNewUser = browser && localStorage.getItem('queues') === '{}';
 	$: showLogin = !isLoggedIn && isNewUser;
 
 	onMount(async () => {
