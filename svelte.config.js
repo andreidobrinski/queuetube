@@ -14,6 +14,7 @@ const config = {
 			pages: 'build',
 			assets: 'build',
 			fallback: null,
+			strict: false,
 		}),
 		paths: {
 			base: isDevEnv ? '' : '/queuetube',
