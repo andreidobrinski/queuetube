@@ -27,12 +27,14 @@ jobs:
       # - run: npm ci
       - run: npm install
 
-      - name: Build
+      - name: build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
+        run: |
+          npm run build
       # - run: npm run format
       # - run: npm run test
-      - run: npm run build
+      # - run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
