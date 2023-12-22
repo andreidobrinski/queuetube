@@ -12,8 +12,13 @@ const config = {
 	kit: {
 		adapter: adapter({
 			fallback: null,
-			strict: false,
+			fallback: 'index.html',
+			// strict: false,
 		}),
+		paths: {
+			// base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
+			base: isDevEnv ? '' : '/queuetube',
+		},
 	},
 };
 
