@@ -9,7 +9,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "host": "svelte-kit dev --host",
-    "deploy": "npm run build && gh-pages -d build -t",
+    "deploy": "gh-pages -d build -t true",
     "package": "svelte-kit package",
     "test": "playwright test",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
