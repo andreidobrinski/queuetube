@@ -11,13 +11,11 @@ const config = {
 
 	kit: {
 		adapter: adapter({
-			pages: 'build',
-			assets: 'build',
 			fallback: null,
 			strict: false,
 		}),
 		paths: {
-			base: isDevEnv ? '' : '/queuetube',
+			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
 		},
 	},
 };
