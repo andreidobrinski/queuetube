@@ -8,20 +8,14 @@ jobs:
       VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+      - name: Install Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '19.2.0'
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          node-version: 19.2.0
+          cache: npm
 
       - name: Install dependencies
         run: npm install
