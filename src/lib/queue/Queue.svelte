@@ -8,6 +8,7 @@
 	import TabBar from '@smui/tab-bar';
 	import QueueVideos from '$lib/queue/QueueVideos.svelte';
 	import QueueSettings from '$lib/queue/settings/QueueSettings.svelte';
+	import { viewTransition } from '$lib/utils';
 
 	let tabs = [
 		{
@@ -23,11 +24,16 @@
 	const hasChannelsInQueue = Object.keys($queueStore[$selectedQueue].channels).length;
 
 	let active = hasChannelsInQueue ? tabs[0] : tabs[1];
+	const queueName = $selectedQueue;
 </script>
 
 <header>
-	<ButtonIcon onClick={() => selectedQueue.set('')} icon="ArrowBack" ariaText="Back to QueueList" />
-	<h5>{$selectedQueue}</h5>
+	<ButtonIcon
+		onClick={() => viewTransition(() => selectedQueue.set(''))}
+		icon="ArrowBack"
+		ariaText="Back to QueueList"
+	/>
+	<h5 style="--viewTransitionName: queue-{queueName};">{queueName}</h5>
 </header>
 
 <TabBar {tabs} let:tab bind:active style="margin-bottom: 1.67em;">
@@ -60,5 +66,6 @@
 
 	h5 {
 		margin: 0.8em;
+		view-transition-name: var(--viewTransitionName);
 	}
 </style>
