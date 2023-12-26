@@ -40,3 +40,5 @@
 		goto(`${base}/`);
 	}
 </script>
+
+<p>Logging in...</p>
