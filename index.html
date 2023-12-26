@@ -2,12 +2,12 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="shortcut icon" href="/queuetube/favicon.ico" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/queuetube/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/queuetube/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/queuetube/favicon-16x16.png">
-		<link rel="manifest" href="/queuetube/site.webmanifest">
-		<link rel="mask-icon" href="/queuetube/safari-pinned-tab.svg" color="#5bbad5">
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="msapplication-TileColor" content="#603cba">
 		<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
@@ -29,29 +29,37 @@
 		<!-- Roboto -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 		<!-- SMUI Styles -->
-		<link rel="stylesheet" href="/queuetube/smui-base.css" />
-		<link rel="stylesheet" href="/queuetube/smui-light.css" media="(prefers-color-scheme: light)" />
-		<link rel="stylesheet" href="/queuetube/smui-dark.css" media="screen and (prefers-color-scheme: dark)" />
-		<meta http-equiv="content-security-policy" content="">
-	<link rel="modulepreload" href="/queuetube/_app/start-4a220448.js">
-	<link rel="modulepreload" href="/queuetube/_app/chunks/index-e1886436.js">
-	<link rel="modulepreload" href="/queuetube/_app/chunks/index-1afdbbc0.js">
-	<link rel="modulepreload" href="/queuetube/_app/chunks/paths-396f020f.js">
-	<link rel="modulepreload" href="/queuetube/_app/chunks/singletons-d1fb5791.js">
+		<link rel="stylesheet" href="/smui-base.css" />
+		<link rel="stylesheet" href="/smui-light.css" media="(prefers-color-scheme: light)" />
+		<link rel="stylesheet" href="/smui-dark.css" media="screen and (prefers-color-scheme: dark)" />
+		
+		<link rel="modulepreload" href="/_app/immutable/entry/start.1d8886c1.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/scheduler.d90865a5.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/singletons.c848abc6.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/index.68c3df23.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/paths.075c7001.js">
+		<link rel="modulepreload" href="/_app/immutable/entry/app.6262c6da.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/index.ccda314a.js">
 	</head>
 	<body>
 		<div>
-		<script type="module" data-hydrate="45h">
-		import { start } from "/queuetube/_app/start-4a220448.js";
-		start({
-			target: document.querySelector('[data-hydrate="45h"]').parentNode,
-			paths: {"base":"/queuetube","assets":"/queuetube"},
-			session: {},
-			route: true,
-			spa: true,
-			trailing_slash: "never",
-			hydrate: null
-		});
-	</script></div>
+			<script>
+				{
+					__sveltekit_1tbbas5 = {
+						base: "",
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.1d8886c1.js"),
+						import("/_app/immutable/entry/app.6262c6da.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
 	</body>
 </html>
