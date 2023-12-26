@@ -15,10 +15,10 @@ const config = {
 			// fallback: null,
 			// strict: false,
 		}),
-		paths: {
-			// base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
-			base: isDevEnv ? '' : '/queuetube',
-		},
+		// paths: {
+		// 	// base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
+		// 	base: isDevEnv ? '' : '/queuetube',
+		// },
 	},
 };
 
