@@ -32,26 +32,35 @@
 		<link rel="stylesheet" href="/queuetube/smui-base.css" />
 		<link rel="stylesheet" href="/queuetube/smui-light.css" media="(prefers-color-scheme: light)" />
 		<link rel="stylesheet" href="/queuetube/smui-dark.css" media="screen and (prefers-color-scheme: dark)" />
-		<meta http-equiv="content-security-policy" content="">
-	<link rel="modulepreload" href="/queuetube/_app/start-c83d9a13.js">
-	<link rel="modulepreload" href="/queuetube/_app/chunks/index-e1886436.js">
-	<link rel="modulepreload" href="/queuetube/_app/chunks/index-1afdbbc0.js">
-	<link rel="modulepreload" href="/queuetube/_app/chunks/paths-396f020f.js">
-	<link rel="modulepreload" href="/queuetube/_app/chunks/singletons-d1fb5791.js">
+		
+		<link rel="modulepreload" href="/queuetube/_app/immutable/entry/start.c9a865d3.js">
+		<link rel="modulepreload" href="/queuetube/_app/immutable/chunks/scheduler.d90865a5.js">
+		<link rel="modulepreload" href="/queuetube/_app/immutable/chunks/singletons.88405a73.js">
+		<link rel="modulepreload" href="/queuetube/_app/immutable/chunks/index.68c3df23.js">
+		<link rel="modulepreload" href="/queuetube/_app/immutable/chunks/paths.d466f161.js">
+		<link rel="modulepreload" href="/queuetube/_app/immutable/entry/app.45713162.js">
+		<link rel="modulepreload" href="/queuetube/_app/immutable/chunks/index.ccda314a.js">
 	</head>
 	<body>
 		<div>
-		<script type="module" data-hydrate="45h">
-		import { start } from "/queuetube/_app/start-c83d9a13.js";
-		start({
-			target: document.querySelector('[data-hydrate="45h"]').parentNode,
-			paths: {"base":"/queuetube","assets":"/queuetube"},
-			session: {},
-			route: true,
-			spa: true,
-			trailing_slash: "never",
-			hydrate: null
-		});
-	</script></div>
+			<script>
+				{
+					__sveltekit_1y7i3dd = {
+						assets: "/queuetube",
+						base: "/queuetube",
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/queuetube/_app/immutable/entry/start.c9a865d3.js"),
+						import("/queuetube/_app/immutable/entry/app.45713162.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
 	</body>
 </html>
