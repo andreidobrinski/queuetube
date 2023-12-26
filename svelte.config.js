@@ -11,8 +11,8 @@ const config = {
 
 	kit: {
 		adapter: adapter({
-			// fallback: 'index.html',
-			fallback: null,
+			fallback: 'index.html',
+			// fallback: null,
 			strict: false,
 		}),
 		paths: {
