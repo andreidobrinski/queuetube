@@ -37,15 +37,23 @@
 
 		const videoData = await getVideosByIds(filteredVideoIds);
 
-		const newVideos = videoData.items.map((video) => ({
-			id: video.id,
-			title: video.snippet.title,
-			thumbnails: video.snippet.thumbnails,
-			channelId: video.snippet.channelId,
-			channelTitle: video.snippet.channelTitle,
-			publishedAt: video.snippet.publishedAt,
-			duration: video.contentDetails.duration,
-		}));
+		const newVideos = videoData.items
+			.map((video) => ({
+				id: video.id,
+				title: video.snippet.title,
+				thumbnails: video.snippet.thumbnails,
+				channelId: video.snippet.channelId,
+				channelTitle: video.snippet.channelTitle,
+				publishedAt: video.snippet.publishedAt,
+				duration: video.contentDetails.duration,
+			}))
+			.filter((video) => {
+				const durationObject = dayjs.duration(video.duration);
+				const seconds = durationObject.asSeconds();
+				// filter out youtube shorts
+				// there is currently no API to detect shorts so this logic is used
+				return seconds > 60;
+			});
 
 		addNewVideosToQueue({ newVideos, queueId: $selectedQueue });
 
